@@ -1,7 +1,7 @@
 Proof of concept for porting joind.in to Symfony2
 =================================================
 
-# Todo
+## Todo
 - Move all the views to nice looking twig templates
 - Identify all the business logic and convert into code
 - Define all the currently used routing
