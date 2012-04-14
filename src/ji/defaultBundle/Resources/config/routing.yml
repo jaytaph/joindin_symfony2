@@ -1,3 +1,19 @@
 jidefaultBundle_homepage:
     pattern:  /
     defaults: { _controller: jidefaultBundle:Default:index }
+
+jidefaultBundle_hot_events:
+    pattern:  /event/hot
+    defaults: { _controller: jidefaultBundle:Event:hot }
+
+jidefaultBundle_upcoming_events:
+    pattern:  /event/upcoming
+    defaults: { _controller: jidefaultBundle:Event:upcoming }
+
+jidefaultBundle_all_events:
+    pattern:  /event/all
+    defaults: { _controller: jidefaultBundle:Event:all }
+
+jidefaultBundle_upcoming_past:
+    pattern:  /event/past
+    defaults: { _controller: jidefaultBundle:Event:past }

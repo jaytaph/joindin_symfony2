@@ -1,14 +1,131 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-        Test van Nick.
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" dir="ltr">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+
+    <title>{% block title %}Start{% endblock %} - Joind.in</title>
+
+    {% block stylesheets %}{% endblock %}
+    <link media="all" rel="stylesheet" type="text/css" href="/inc/css/site.css"/>
+    <link media="all" rel="stylesheet" type="text/css" href="/inc/css/jquery-ui/jquery-ui-1.7.3.custom.css"/>
+    <link media="all" rel="stylesheet" type="text/css" href="/inc/css/jquery-ui/theme/ui.all.css"/>
+
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
+    {% block javascript %}{% endblock %}
+    <script type="text/javascript" src="/inc/js/jquery.js"></script>
+    <script type="text/javascript" src="/inc/js/jquery.pause.js"></script>
+    <script type="text/javascript" src="/inc/js/jquery-ui.js"></script>
+    <script type="text/javascript" src="/inc/js/site.js" async></script>
+    <script type="text/javascript" src="/inc/js/notifications.js" async></script>
+
+    <script type="text/javascript">var reqk="ed0ca1e7c3746a64bba6d2bf277dda81";</script>
+    <script type="text/javascript">var seck="939408069";</script>
+</head>
+
+<body id="page-home">
+
+<div id="hd">
+    <div class="container_12 top">
+        <div class="grid_12">
+            <div class="usr">
+                <div class="wrapper">
+                                    Logged in as <strong><a href="/user/view/2">tsoto</a></strong> |
+                    <a href="/user/main">Account</a> |
+                    <a href="/user/logout">Logout</a>
+                                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="container_12 nav">
+        <div class="grid_3 logo">
+            <a href="/"><img src="/inc/img/logo.png" border="0" alt="Joind.in Logo" height="60" width="200" /></a>
+        </div>
+        <div class="grid_6 menu">
+            <ul>
+                <li id="menu-event"><a href="/event">Events</a>
+                <li id="menu-talk"><a href="/talk">Talks</a>
+                <li id="menu-about" class="sep"><a href="/about">About</a>
+                <li id="menu-help"><a href="/help">Help</a>
+                <li id="menu-blog"><a href="/blog">Blog</a>
+            </ul>
+            <div class="clear"></div>
+        </div>
+        <div class="grid_3 search">
+            <form id="top-search" method="post" action="/search">
+                <label id="top-search-label" accesskey="2" for="top-search-input">Search Joind.in...</label>
+                <input type="text" value="" id="top-search-input" name="search_term"/>
+                <input type="image" alt="Search" src="/inc/img/top-search-submit.png" id="top-search-submit"/>
+            </form>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+<div id="ctn">
+    <div class="container_12 container">
+        <div class="grid_8">
+            <div class="main">
+
+{% block body %}{% endblock %}
+
+            </div>
+        </div>
+        <div class="grid_4">
+        <div class="sidebar">
+            <div class="box">
+            <h4>Submit your event</h4>
+            <div class="ctn">
+                <p>
+                    Know of an event happening? Let us know! We love to get the word out about events the community would be interested in and you can help us spread the word!
+                </p>
+                <p style="text-align:center">
+                    <a href="/event/submit" class="btn-big">Submit your event!</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="clear"></div>
+    </div>
+</div>
+
+<div id="ftr">
+<div class="container_12">
+<div class="grid_6">
+<a href="/event">Events</a> |
+<a href="/talk">Talks</a> |
+<a href="/search">Search</a> |
+<a href="/about">About</a> |
+<a href="/help">Help</a> |
+<a href="/blog">Blog</a> |
+<a href="/api">API</a> |
+<a href="/about/contact">Contact</a>
+</div>
+<div class="grid_6 rgt">
+<a href="http://www.combell.com/en/servers/cloud-server" title="Cloud servers & cloud hosting">Cloud server</a> <a href="http://www.combell.com/en" title="Hosting & webhosting">hosting</a> by Combell <a href="http://www.combell.com/en" title="Cloud hosting Combell"><img src="/inc/img/LOGO-COMBELL_small.gif" border="0" style="vertical-align:text-bottom;" alt="Combell" height="22" width="80"/></a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+&copy; Joind.in 2012        </div>
+<div class="clear"></div>
+</div>
+</div>
+
+<div id="jQueryUImessageBox" style="display:none">
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-246789-3");
+pageTracker._trackPageview();
+</script>
+
     </body>
 </html>

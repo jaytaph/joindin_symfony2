@@ -1,0 +1,17 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Upcoming events {% endblock %}
+
+{% block body %}
+<div class="box">
+<h2 class="h1 icon-event">Upcoming Events <a class="more" href="/event/hot">More &raquo;</a></h2>
+
+{% for event in events %}
+    {% include "jidefaultBundle:Event:event_row.html.twig" %}
+{% else %}
+    No events found.
+{% endfor %}
+
+</div>
+
+{% endblock %}
