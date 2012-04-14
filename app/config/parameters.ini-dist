@@ -20,8 +20,8 @@
     database_driver="pdo_mysql"
     database_host="localhost"
     database_port=""
-    database_name="cruisetravel"
-    database_user="cruisetravel"
+    database_name="ciji"
+    database_user="ciji"
     database_password="secret"
 
     mailer_transport="smtp"

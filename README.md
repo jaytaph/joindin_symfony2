@@ -1,4 +1,1 @@
-CruiseTravel Symfony skeleton
-=============================
-test Marcel
-
+Proof of concept for porting joind.in to Symfony2
