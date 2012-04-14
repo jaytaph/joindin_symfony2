@@ -1,0 +1,39 @@
+<?php
+
+namespace ji\defaultBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ji\defaultBundle\Entity\UserAttend
+ *
+ * @ORM\Table(name="user_attend")
+ * @ORM\Entity
+ */
+class UserAttend
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer $uid
+     *
+     * @ORM\Column(name="uid", type="integer", nullable=true)
+     */
+    private $uid;
+
+    /**
+     * @var integer $eid
+     *
+     * @ORM\Column(name="eid", type="integer", nullable=true)
+     */
+    private $eid;
+
+
+}

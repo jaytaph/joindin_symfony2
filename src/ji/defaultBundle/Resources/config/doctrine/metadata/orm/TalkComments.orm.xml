@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="TalkComments" table="talk_comments">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="talkId" type="integer" column="talk_id"/>
+    <field name="rating" type="integer" column="rating"/>
+    <field name="comment" type="text" column="comment"/>
+    <field name="dateMade" type="integer" column="date_made"/>
+    <field name="private" type="integer" column="private"/>
+    <field name="active" type="integer" column="active"/>
+    <field name="userId" type="integer" column="user_id"/>
+    <field name="commentType" type="string" column="comment_type" length="10"/>
+    <field name="source" type="string" column="source" length="25"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

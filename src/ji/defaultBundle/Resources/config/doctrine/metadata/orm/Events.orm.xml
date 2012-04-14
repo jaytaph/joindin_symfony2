@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Events" table="events">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="eventName" type="string" column="event_name" length="200"/>
+    <field name="eventStart" type="integer" column="event_start"/>
+    <field name="eventEnd" type="integer" column="event_end"/>
+    <field name="eventLat" type="decimal" column="event_lat"/>
+    <field name="eventLong" type="decimal" column="event_long"/>
+    <field name="eventLoc" type="text" column="event_loc"/>
+    <field name="eventDesc" type="text" column="event_desc"/>
+    <field name="active" type="integer" column="active"/>
+    <field name="eventStub" type="string" column="event_stub" length="30"/>
+    <field name="eventIcon" type="string" column="event_icon" length="30"/>
+    <field name="pending" type="integer" column="pending"/>
+    <field name="eventHashtag" type="string" column="event_hashtag" length="100"/>
+    <field name="eventHref" type="string" column="event_href" length="600"/>
+    <field name="eventCfpStart" type="integer" column="event_cfp_start"/>
+    <field name="eventCfpEnd" type="integer" column="event_cfp_end"/>
+    <field name="eventVoting" type="string" column="event_voting" length="1"/>
+    <field name="private" type="string" column="private" length="1"/>
+    <field name="eventTzCont" type="string" column="event_tz_cont" length="30"/>
+    <field name="eventTzPlace" type="string" column="event_tz_place" length="70"/>
+    <field name="eventContactName" type="string" column="event_contact_name" length="200"/>
+    <field name="eventContactEmail" type="string" column="event_contact_email" length="200"/>
+    <field name="eventCfpUrl" type="string" column="event_cfp_url" length="200"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

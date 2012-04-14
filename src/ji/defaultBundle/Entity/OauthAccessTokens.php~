@@ -1,0 +1,67 @@
+<?php
+
+namespace ji\defaultBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ji\defaultBundle\Entity\OauthAccessTokens
+ *
+ * @ORM\Table(name="oauth_access_tokens")
+ * @ORM\Entity
+ */
+class OauthAccessTokens
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $consumerKey
+     *
+     * @ORM\Column(name="consumer_key", type="string", length=30, nullable=false)
+     */
+    private $consumerKey;
+
+    /**
+     * @var string $accessToken
+     *
+     * @ORM\Column(name="access_token", type="string", length=16, nullable=false)
+     */
+    private $accessToken;
+
+    /**
+     * @var string $accessTokenSecret
+     *
+     * @ORM\Column(name="access_token_secret", type="string", length=32, nullable=false)
+     */
+    private $accessTokenSecret;
+
+    /**
+     * @var integer $userId
+     *
+     * @ORM\Column(name="user_id", type="integer", nullable=true)
+     */
+    private $userId;
+
+    /**
+     * @var datetime $createdDate
+     *
+     * @ORM\Column(name="created_date", type="datetime", nullable=false)
+     */
+    private $createdDate;
+
+    /**
+     * @var datetime $lastUsedDate
+     *
+     * @ORM\Column(name="last_used_date", type="datetime", nullable=true)
+     */
+    private $lastUsedDate;
+
+
+}

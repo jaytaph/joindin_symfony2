@@ -1,0 +1,39 @@
+<?php
+
+namespace ji\defaultBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ji\defaultBundle\Entity\Categories
+ *
+ * @ORM\Table(name="categories")
+ * @ORM\Entity
+ */
+class Categories
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $catTitle
+     *
+     * @ORM\Column(name="cat_title", type="string", length=200, nullable=true)
+     */
+    private $catTitle;
+
+    /**
+     * @var text $catDesc
+     *
+     * @ORM\Column(name="cat_desc", type="text", nullable=true)
+     */
+    private $catDesc;
+
+
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="PendingTalkClaims" table="pending_talk_claims">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="talkId" type="integer" column="talk_id"/>
+    <field name="submittedBy" type="integer" column="submitted_by"/>
+    <field name="speakerId" type="integer" column="speaker_id"/>
+    <field name="dateAdded" type="integer" column="date_added"/>
+    <field name="claimId" type="integer" column="claim_id"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

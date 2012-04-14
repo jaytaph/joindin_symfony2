@@ -1,0 +1,60 @@
+<?php
+
+namespace ji\defaultBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ji\defaultBundle\Entity\BlogComments
+ *
+ * @ORM\Table(name="blog_comments")
+ * @ORM\Entity
+ */
+class BlogComments
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $title
+     *
+     * @ORM\Column(name="title", type="string", length=100, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var integer $authorId
+     *
+     * @ORM\Column(name="author_id", type="integer", nullable=true)
+     */
+    private $authorId;
+
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    private $content;
+
+    /**
+     * @var integer $blogPostId
+     *
+     * @ORM\Column(name="blog_post_id", type="integer", nullable=true)
+     */
+    private $blogPostId;
+
+    /**
+     * @var string $authorName
+     *
+     * @ORM\Column(name="author_name", type="string", length=100, nullable=true)
+     */
+    private $authorName;
+
+
+}

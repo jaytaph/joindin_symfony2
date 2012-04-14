@@ -1,0 +1,60 @@
+<?php
+
+namespace ji\defaultBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ji\defaultBundle\Entity\PendingTalkClaims
+ *
+ * @ORM\Table(name="pending_talk_claims")
+ * @ORM\Entity
+ */
+class PendingTalkClaims
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer $talkId
+     *
+     * @ORM\Column(name="talk_id", type="integer", nullable=true)
+     */
+    private $talkId;
+
+    /**
+     * @var integer $submittedBy
+     *
+     * @ORM\Column(name="submitted_by", type="integer", nullable=true)
+     */
+    private $submittedBy;
+
+    /**
+     * @var integer $speakerId
+     *
+     * @ORM\Column(name="speaker_id", type="integer", nullable=true)
+     */
+    private $speakerId;
+
+    /**
+     * @var integer $dateAdded
+     *
+     * @ORM\Column(name="date_added", type="integer", nullable=true)
+     */
+    private $dateAdded;
+
+    /**
+     * @var integer $claimId
+     *
+     * @ORM\Column(name="claim_id", type="integer", nullable=true)
+     */
+    private $claimId;
+
+
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="PatchHistory" table="patch_history">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="patchHistoryId" type="integer" column="patch_history_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="patchNumber" type="integer" column="patch_number"/>
+    <field name="datePatched" type="datetime" column="date_patched"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

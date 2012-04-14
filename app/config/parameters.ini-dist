@@ -1,0 +1,35 @@
+; This is the distribution file for parameters.ini
+;
+; Change the configuration to suit your needs. If you change
+; anything in config.* files, make sure all parametized options
+; are placed inside this file.
+;
+; for instance:
+;    config.yml: 
+;       solr.host : %solr_host%
+;       solr.port : %solr_port%
+;       solr.path : %solr_path%
+;
+;    parameters.ini(-dist):
+;       solr_host = 127.0.0.1
+;       solr_port = 8080
+;       solr_path = /solr/development
+;
+
+[parameters]
+    database_driver="pdo_mysql"
+    database_host="localhost"
+    database_port=""
+    database_name="cruisetravel"
+    database_user="cruisetravel"
+    database_password="secret"
+
+    mailer_transport="smtp"
+    mailer_host="localhost"
+    mailer_user=""
+    mailer_password=""
+
+    locale="en"
+
+    secret="ddd7b14b22f5291d103b54910dde63b834"
+

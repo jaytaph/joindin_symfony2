@@ -1,0 +1,60 @@
+<?php
+
+namespace ji\defaultBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ji\defaultBundle\Entity\BlogPosts
+ *
+ * @ORM\Table(name="blog_posts")
+ * @ORM\Entity
+ */
+class BlogPosts
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $title
+     *
+     * @ORM\Column(name="title", type="string", length=250, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var text $content
+     *
+     * @ORM\Column(name="content", type="text", nullable=true)
+     */
+    private $content;
+
+    /**
+     * @var integer $datePosted
+     *
+     * @ORM\Column(name="date_posted", type="integer", nullable=true)
+     */
+    private $datePosted;
+
+    /**
+     * @var integer $authorId
+     *
+     * @ORM\Column(name="author_id", type="integer", nullable=true)
+     */
+    private $authorId;
+
+    /**
+     * @var integer $views
+     *
+     * @ORM\Column(name="views", type="integer", nullable=true)
+     */
+    private $views;
+
+
+}

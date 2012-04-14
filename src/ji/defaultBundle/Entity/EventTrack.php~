@@ -1,0 +1,53 @@
+<?php
+
+namespace ji\defaultBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ji\defaultBundle\Entity\EventTrack
+ *
+ * @ORM\Table(name="event_track")
+ * @ORM\Entity
+ */
+class EventTrack
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer $eventId
+     *
+     * @ORM\Column(name="event_id", type="integer", nullable=true)
+     */
+    private $eventId;
+
+    /**
+     * @var string $trackName
+     *
+     * @ORM\Column(name="track_name", type="string", length=300, nullable=true)
+     */
+    private $trackName;
+
+    /**
+     * @var text $trackDesc
+     *
+     * @ORM\Column(name="track_desc", type="text", nullable=true)
+     */
+    private $trackDesc;
+
+    /**
+     * @var string $trackColor
+     *
+     * @ORM\Column(name="track_color", type="string", length=6, nullable=true)
+     */
+    private $trackColor;
+
+
+}

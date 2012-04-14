@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="SpeakerProfile" table="speaker_profile">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="userId" type="integer" column="user_id"/>
+    <field name="countryId" type="integer" column="country_id"/>
+    <field name="fullName" type="string" column="full_name" length="200"/>
+    <field name="contactEmail" type="string" column="contact_email" length="200"/>
+    <field name="website" type="string" column="website" length="200"/>
+    <field name="blog" type="string" column="blog" length="200"/>
+    <field name="phone" type="string" column="phone" length="120"/>
+    <field name="city" type="string" column="city" length="200"/>
+    <field name="zip" type="string" column="zip" length="50"/>
+    <field name="street" type="string" column="street" length="200"/>
+    <field name="jobTitle" type="string" column="job_title" length="200"/>
+    <field name="bio" type="text" column="bio"/>
+    <field name="resume" type="string" column="resume" length="200"/>
+    <field name="picture" type="string" column="picture" length="200"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

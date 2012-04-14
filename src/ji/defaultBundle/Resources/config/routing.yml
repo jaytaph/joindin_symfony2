@@ -1,0 +1,3 @@
+jidefaultBundle_homepage:
+    pattern:  /
+    defaults: { _controller: jidefaultBundle:Default:index }

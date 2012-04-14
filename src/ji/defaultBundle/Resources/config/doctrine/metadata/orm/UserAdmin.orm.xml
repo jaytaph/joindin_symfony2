@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="UserAdmin" table="user_admin">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="uid" type="integer" column="uid"/>
+    <field name="rid" type="integer" column="rid"/>
+    <field name="rtype" type="string" column="rtype" length="20"/>
+    <field name="rcode" type="string" column="rcode" length="40"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>

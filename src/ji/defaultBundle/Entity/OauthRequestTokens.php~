@@ -1,0 +1,74 @@
+<?php
+
+namespace ji\defaultBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * ji\defaultBundle\Entity\OauthRequestTokens
+ *
+ * @ORM\Table(name="oauth_request_tokens")
+ * @ORM\Entity
+ */
+class OauthRequestTokens
+{
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string $consumerKey
+     *
+     * @ORM\Column(name="consumer_key", type="string", length=30, nullable=false)
+     */
+    private $consumerKey;
+
+    /**
+     * @var string $requestToken
+     *
+     * @ORM\Column(name="request_token", type="string", length=8, nullable=false)
+     */
+    private $requestToken;
+
+    /**
+     * @var string $requestTokenSecret
+     *
+     * @ORM\Column(name="request_token_secret", type="string", length=32, nullable=false)
+     */
+    private $requestTokenSecret;
+
+    /**
+     * @var string $callback
+     *
+     * @ORM\Column(name="callback", type="string", length=400, nullable=true)
+     */
+    private $callback;
+
+    /**
+     * @var string $verification
+     *
+     * @ORM\Column(name="verification", type="string", length=20, nullable=true)
+     */
+    private $verification;
+
+    /**
+     * @var integer $authorisedUserId
+     *
+     * @ORM\Column(name="authorised_user_id", type="integer", nullable=true)
+     */
+    private $authorisedUserId;
+
+    /**
+     * @var datetime $createdDate
+     *
+     * @ORM\Column(name="created_date", type="datetime", nullable=false)
+     */
+    private $createdDate;
+
+
+}

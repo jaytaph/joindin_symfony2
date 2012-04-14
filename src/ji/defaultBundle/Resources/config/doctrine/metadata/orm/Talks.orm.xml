@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="Talks" table="talks">
+    <change-tracking-policy>DEFERRED_IMPLICIT</change-tracking-policy>
+    <id name="id" type="integer" column="ID">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="talkTitle" type="text" column="talk_title"/>
+    <field name="speaker" type="text" column="speaker"/>
+    <field name="slidesLink" type="text" column="slides_link"/>
+    <field name="dateGiven" type="integer" column="date_given"/>
+    <field name="eventId" type="integer" column="event_id"/>
+    <field name="talkDesc" type="text" column="talk_desc"/>
+    <field name="active" type="integer" column="active"/>
+    <field name="ownerId" type="integer" column="owner_id"/>
+    <field name="lang" type="integer" column="lang"/>
+    <lifecycle-callbacks/>
+  </entity>
+</doctrine-mapping>
