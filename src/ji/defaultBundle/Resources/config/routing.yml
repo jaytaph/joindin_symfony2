@@ -1,6 +1,23 @@
-jidefaultBundle_homepage:
+home:
     pattern:  /
     defaults: { _controller: jidefaultBundle:Default:index }
+
+help:
+    resource: "@jidefaultBundle/Resources/config/routes/help.yml"
+    prefix:   /help
+
+about:
+    resource: "@jidefaultBundle/Resources/config/routes/about.yml"
+    prefix:   /about
+
+blog:
+    resource: "@jidefaultBundle/Resources/config/routes/blog.yml"
+    prefix:   /blog
+
+
+###########################
+# Events
+###########################
 
 jidefaultBundle_hot_events:
     pattern:  /event/hot

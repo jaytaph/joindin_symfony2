@@ -5,12 +5,12 @@ namespace ji\defaultBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
-class DefaultController extends Controller
+class AboutController extends Controller
 {
-    
+
     public function indexAction()
     {
-        return $this->redirect($this->generateUrl('jidefaultBundle_hot_events'));
+        return $this->render('jidefaultBundle:About:about.html.twig');
     }
 
 }

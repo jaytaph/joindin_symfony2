@@ -49,9 +49,9 @@
             <ul>
                 <li id="menu-event"><a href="/event">Events</a>
                 <li id="menu-talk"><a href="/talk">Talks</a>
-                <li id="menu-about" class="sep"><a href="/about">About</a>
-                <li id="menu-help"><a href="/help">Help</a>
-                <li id="menu-blog"><a href="/blog">Blog</a>
+                <li id="menu-about" class="sep"><a href="{{ path('about') }}">About</a>
+                <li id="menu-help"><a href="{{ path('help') }}">Help</a>
+                <li id="menu-blog"><a href="{{ path('blog') }}">Blog</a>
             </ul>
             <div class="clear"></div>
         </div>
@@ -77,6 +77,8 @@
             </div>
         </div>
         <div class="grid_4">
+
+{% block sidebar %}
         <div class="sidebar">
             <div class="box">
             <h4>Submit your event</h4>
@@ -89,6 +91,8 @@
                 </p>
             </div>
         </div>
+{% endblock %}
+
     </div>
 </div>
     <div class="clear"></div>
@@ -96,36 +100,31 @@
 </div>
 
 <div id="ftr">
-<div class="container_12">
-<div class="grid_6">
-<a href="/event">Events</a> |
-<a href="/talk">Talks</a> |
-<a href="/search">Search</a> |
-<a href="/about">About</a> |
-<a href="/help">Help</a> |
-<a href="/blog">Blog</a> |
-<a href="/api">API</a> |
-<a href="/about/contact">Contact</a>
-</div>
-<div class="grid_6 rgt">
-<a href="http://www.combell.com/en/servers/cloud-server" title="Cloud servers & cloud hosting">Cloud server</a> <a href="http://www.combell.com/en" title="Hosting & webhosting">hosting</a> by Combell <a href="http://www.combell.com/en" title="Cloud hosting Combell"><img src="/inc/img/LOGO-COMBELL_small.gif" border="0" style="vertical-align:text-bottom;" alt="Combell" height="22" width="80"/></a>
-&nbsp;&nbsp;&nbsp;&nbsp;
-&copy; Joind.in 2012        </div>
-<div class="clear"></div>
-</div>
-</div>
+    <div class="container_12">
+        <div class="grid_6">
+            <a href="/event">Events</a> |
+            <a href="/talk">Talks</a> |
+            <a href="/search">Search</a> |
+            <a href="{{ path('about') }}">About</a> |
+            <a href="{{ path('help') }}">Help</a> |
+            <a href="{{ path('blog') }}">Blog</a> |
+            <a href="/api">API</a> |
+            <a href="{{ path('about_contact') }}">Contact</a>
+        </div>
 
-<div id="jQueryUImessageBox" style="display:none">
-</div>
+        <div class="grid_6 rgt">
+            <a href="http://www.combell.com/en/servers/cloud-server" title="Cloud servers & cloud hosting">Cloud server</a>
+            <a href="http://www.combell.com/en" title="Hosting & webhosting">hosting</a> by Combell
+            <a href="http://www.combell.com/en" title="Cloud hosting Combell"><img src="/inc/img/LOGO-COMBELL_small.gif" border="0" style="vertical-align:text-bottom;" alt="Combell" height="22" width="80"/></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            &copy; Joind.in {{ now|date("Y") }}</div>
+            <div class="clear"></div>
+        </div>
+    </div>
 
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-var pageTracker = _gat._getTracker("UA-246789-3");
-pageTracker._trackPageview();
-</script>
+    <div id="jQueryUImessageBox" style="display:none"></div>
 
-    </body>
+    {% include "jidefault:Default:analytics.html.twig" %}
+
+</body>
 </html>

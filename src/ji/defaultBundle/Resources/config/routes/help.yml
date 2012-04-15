@@ -1,0 +1,7 @@
+help_page:
+    pattern:  /{what}
+    defaults: { _controller: jidefaultBundle:Help:page }
+
+help:
+    pattern:  /
+    defaults: { _controller: jidefaultBundle:Help:index }
