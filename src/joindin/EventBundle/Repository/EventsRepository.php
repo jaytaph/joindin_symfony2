@@ -116,11 +116,6 @@ class EventsRepository extends EntityRepository
         ->andWhere('e.active = 1')
         ->andWhere("e.private != 'YES'");
 
-
-        print "<pre>";
-        print $qb->getDQL();
-        print "</pre>";
-
         return $qb->getQuery()->getResult();
     }
 }
