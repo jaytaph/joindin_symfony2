@@ -12,7 +12,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindindefaultBundle:Events')->findHotEvents(5);
+        $events = $em->getRepository('joindinEventBundle:Events')->findHotEvents(5);
         return $this->render('joindinEventBundle:Default:hot.html.twig', array('events' => $events));
     }
 
@@ -20,7 +20,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindindefaultBundle:Events')->findUpcomingEvents(5);
+        $events = $em->getRepository('joindinEventBundle:Events')->findUpcomingEvents(5);
         return $this->render('joindinEventBundle:Default:upcoming.html.twig', array('events' => $events));
     }
 
@@ -28,7 +28,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindindefaultBundle:Events')->findUpcomingEvents(5);
+        $events = $em->getRepository('joindinEventBundle:Events')->findUpcomingEvents(5);
         return $this->render('joindinEventBundle:Default:past.html.twig', array('events' => $events));
     }
 
@@ -36,7 +36,7 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindindefaultBundle:Events')->findAllEvents(5);
+        $events = $em->getRepository('joindinEventBundle:Events')->findAllEvents(5);
         return $this->render('joindinEventBundle:Default:all.html.twig', array('events' => $events));
     }
 }

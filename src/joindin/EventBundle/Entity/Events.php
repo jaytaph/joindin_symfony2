@@ -1,15 +1,15 @@
 <?php
 
-namespace joindin\defaultBundle\Entity;
+namespace joindin\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * joindin\defaultBundle\Entity\Events
+ * joindin\EventBundle\Entity\Events
  *
  * @ORM\Table(name="events")
- * @ORM\Entity(repositoryClass="joindin\defaultBundle\Repository\EventsRepository")
+ * @ORM\Entity(repositoryClass="joindin\EventBundle\Repository\EventsRepository")
  */
 class Events
 {
@@ -178,7 +178,7 @@ class Events
 
 
     /**
-     * @ORM\OneToMany(targetEntity="joindin\defaultBundle\Entity\EventComments", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="joindin\EventBundle\Entity\EventComments", mappedBy="event")
      */
     protected $comments;
 
@@ -641,10 +641,10 @@ class Events
     /**
      * Add comments
      *
-     * @param joindin\defaultBundle\Entity\EventComments $comments
+     * @param joindin\EventBundle\Entity\EventComments $comments
      * @return Events
      */
-    public function addEventComments(\joindin\defaultBundle\Entity\EventComments $comments)
+    public function addEventComments(\joindin\EventBundle\Entity\EventComments $comments)
     {
         $this->comments[] = $comments;
         return $this;

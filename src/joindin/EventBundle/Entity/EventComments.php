@@ -1,11 +1,11 @@
 <?php
 
-namespace joindin\defaultBundle\Entity;
+namespace joindin\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * joindin\defaultBundle\Entity\EventComments
+ * joindin\EventBundle\Entity\EventComments
  *
  * @ORM\Table(name="event_comments")
  * @ORM\Entity
@@ -79,7 +79,7 @@ class EventComments
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="joindin\defaultBundle\Entity\Events", inversedBy="ID")
+     * @ORM\ManyToOne(targetEntity="joindin\EventBundle\Entity\Events", inversedBy="ID")
      */
     protected $event;
 
@@ -256,10 +256,10 @@ class EventComments
     /**
      * Set event
      *
-     * @param joindin\defaultBundle\Entity\Event $event
+     * @param joindin\EventBundle\Entity\Events $event
      * @return EventComments
      */
-    public function setEvent(\joindin\defaultBundle\Entity\Event $event = null)
+    public function setEvent(\joindin\EventBundle\Entity\Events $event = null)
     {
         $this->event = $event;
         return $this;
@@ -268,7 +268,7 @@ class EventComments
     /**
      * Get event
      *
-     * @return joindin\defaultBundle\Entity\Event 
+     * @return joindin\EventBundle\Entity\Events
      */
     public function getEvent()
     {

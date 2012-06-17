@@ -1,11 +1,11 @@
 <?php
 
-namespace joindin\defaultBundle\Entity;
+namespace joindin\TalkBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * joindin\defaultBundle\Entity\PendingTalkClaims
+ * joindin\TalkBundle\Entity\PendingTalkClaims
  *
  * @ORM\Table(name="pending_talk_claims")
  * @ORM\Entity

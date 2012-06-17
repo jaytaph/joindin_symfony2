@@ -1,6 +1,6 @@
 <?php
 
-namespace joindin\defaultBundle\Repository;
+namespace joindin\EventBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr;
@@ -112,7 +112,7 @@ class EventsRepository extends EntityRepository
      */
     protected function _getEvents(\Doctrine\ORM\QueryBuilder $qb) {
         $qb->addSelect('e')
-            ->from('joindin\defaultBundle\Entity\Events', 'e')
+            ->from('joindin\EventBundle\Entity\Events', 'e')
         ->andWhere('e.active = 1')
         ->andWhere("e.private != 'YES'");
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace joindin\defaultBundle\Entity;
+namespace joindin\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * joindin\defaultBundle\Entity\TagsEvents
+ * joindin\EventBundle\Entity\TagsEvents
  *
  * @ORM\Table(name="tags_events")
  * @ORM\Entity
