@@ -10,7 +10,10 @@ class DefaultController extends Controller
     
     public function indexAction()
     {
-        return $this->redirect($this->generateUrl('jidefaultBundle_hot_events'));
+        $em = $this->getDoctrine()->getEntityManager();
+
+        $events = $em->getRepository('jidefaultBundle:Events')->findHotEvents(5);
+        return $this->render('jidefaultBundle:Event:hot.html.twig', array('events' => $events));
     }
 
 }

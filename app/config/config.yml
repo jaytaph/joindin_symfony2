@@ -66,3 +66,7 @@ sensio_framework_extra:
 fos_rest:
     routing_loader:
         default_format: xml
+
+twig:
+    globals:
+        google_analytics_code: %google_analytics_code%

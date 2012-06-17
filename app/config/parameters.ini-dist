@@ -33,3 +33,6 @@
 
     secret="ddd7b14b22f5291d103b54910dde63b834"
 
+    ; Google Analytics tracker code
+    google_analytics_code  = UA-246789-3
+

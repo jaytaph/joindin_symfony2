@@ -109,7 +109,7 @@
             <a href="{{ path('help') }}">Help</a> |
             <a href="{{ path('blog') }}">Blog</a> |
             <a href="/api">API</a> |
-            <a href="{{ path('about_contact') }}">Contact</a>
+            <a href="/about/contact">Contact</a>
         </div>
 
         <div class="grid_6 rgt">
@@ -117,14 +117,14 @@
             <a href="http://www.combell.com/en" title="Hosting & webhosting">hosting</a> by Combell
             <a href="http://www.combell.com/en" title="Cloud hosting Combell"><img src="/inc/img/LOGO-COMBELL_small.gif" border="0" style="vertical-align:text-bottom;" alt="Combell" height="22" width="80"/></a>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            &copy; Joind.in {{ now|date("Y") }}</div>
+            &copy; Joind.in {{ "now"|date("Y") }}</div>
             <div class="clear"></div>
         </div>
     </div>
 
     <div id="jQueryUImessageBox" style="display:none"></div>
 
-    {% include "jidefault:Default:analytics.html.twig" %}
+    {% include "::analytics.html.twig" %}
 
 </body>
 </html>
