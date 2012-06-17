@@ -36,7 +36,7 @@ class EventController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindindefaultBundle:Events')->findUpcomingEvents(5);
+        $events = $em->getRepository('joindindefaultBundle:Events')->findAllEvents(5);
         return $this->render('joindindefaultBundle:Event:all.html.twig', array('events' => $events));
     }
 

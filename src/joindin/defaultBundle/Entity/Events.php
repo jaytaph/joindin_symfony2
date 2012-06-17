@@ -3,6 +3,7 @@
 namespace joindin\defaultBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * joindin\defaultBundle\Entity\Events
@@ -176,6 +177,10 @@ class Events
     private $eventCfpUrl;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="joindin\defaultBundle\Entity\EventComments", mappedBy="event")
+     */
+    protected $comments;
 
     /**
      * Get id
@@ -625,5 +630,33 @@ class Events
     public function getEventCfpUrl()
     {
         return $this->eventCfpUrl;
+    }
+
+
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add comments
+     *
+     * @param joindin\defaultBundle\Entity\EventComments $comments
+     * @return Events
+     */
+    public function addEventComments(\joindin\defaultBundle\Entity\EventComments $comments)
+    {
+        $this->comments[] = $comments;
+        return $this;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

@@ -78,6 +78,10 @@ class EventComments
     private $source;
 
 
+    /**
+     * @ORM\ManyToOne(targetEntity="joindin\defaultBundle\Entity\Events", inversedBy="ID")
+     */
+    protected $event;
 
     /**
      * Get id
@@ -247,5 +251,27 @@ class EventComments
     public function getSource()
     {
         return $this->source;
+    }
+
+    /**
+     * Set event
+     *
+     * @param joindin\defaultBundle\Entity\Event $event
+     * @return EventComments
+     */
+    public function setEvent(\joindin\defaultBundle\Entity\Event $event = null)
+    {
+        $this->event = $event;
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return joindin\defaultBundle\Entity\Event 
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 }
