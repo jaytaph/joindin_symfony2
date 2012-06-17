@@ -12,5 +12,6 @@ Proof of concept for porting joind.in to Symfony2
 - Add FOSUserBundle
 - Add firewall / security
 - Add forms
+- Remove things like "<?php echo $this->config->item('site_name'); ?>" inside the templates
 
 - All the rest I forgot
