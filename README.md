@@ -7,4 +7,10 @@ Proof of concept for porting joind.in to Symfony2
 - Define all the currently used routing
 - Correctly set the relations between the entities
 - Probably we want to change the current entity field names as well
+
+- Change all the href's to path's / url's
+- Add FOSUserBundle
+- Add firewall / security
+- Add forms
+
 - All the rest I forgot
