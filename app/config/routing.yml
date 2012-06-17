@@ -1,3 +1,19 @@
+# Talk specific pages
+joindinTalkBundle:
+    resource: "@joindinTalkBundle/Resources/config/routing.yml"
+    prefix:   /talk
+
+# Event specific pages
+joindinEventBundle:
+    resource: "@joindinEventBundle/Resources/config/routing.yml"
+    prefix:   /event
+
+# Blog pages
+joindinBlogBundle:
+    resource: "@joindinBlogBundle/Resources/config/routing.yml"
+    prefix:   /blog
+
+# Static pages and homepage
 joindindefaultBundle:
     resource: "@joindindefaultBundle/Resources/config/routing.yml"
     prefix:   /

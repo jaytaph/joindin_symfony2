@@ -1,0 +1,7 @@
+parameters:
+#    joindin_blog.example.class: joindin\BlogBundle\Example
+
+services:
+#    joindin_blog.example:
+#        class: %joindin_blog.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

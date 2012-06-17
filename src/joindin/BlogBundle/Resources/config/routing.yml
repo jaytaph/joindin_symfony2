@@ -1,0 +1,3 @@
+joindinBlogBundle_homepage:
+    pattern:  /
+    defaults: { _controller: joindinBlogBundle:Default:index }

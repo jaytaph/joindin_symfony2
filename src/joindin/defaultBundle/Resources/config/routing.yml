@@ -9,28 +9,3 @@ help:
 about:
     resource: "@joindindefaultBundle/Resources/config/routes/about.yml"
     prefix:   /about
-
-blog:
-    resource: "@joindindefaultBundle/Resources/config/routes/blog.yml"
-    prefix:   /blog
-
-
-###########################
-# Events
-###########################
-
-joindindefaultBundle_hot_events:
-    pattern:  /event/hot
-    defaults: { _controller: joindindefaultBundle:Event:hot }
-
-joindindefaultBundle_upcoming_events:
-    pattern:  /event/upcoming
-    defaults: { _controller: joindindefaultBundle:Event:upcoming }
-
-joindindefaultBundle_all_events:
-    pattern:  /event/all
-    defaults: { _controller: joindindefaultBundle:Event:all }
-
-joindindefaultBundle_upcoming_past:
-    pattern:  /event/past
-    defaults: { _controller: joindindefaultBundle:Event:past }

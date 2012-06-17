@@ -1,19 +1,19 @@
 <?php
 
-namespace joindin\defaultBundle\Controller;
+namespace joindin\EventBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
-class EventController extends Controller
+class DefaultController extends Controller
 {
-
+    
     public function hotAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
 
         $events = $em->getRepository('joindindefaultBundle:Events')->findHotEvents(5);
-        return $this->render('joindindefaultBundle:Event:hot.html.twig', array('events' => $events));
+        return $this->render('joindinEventBundle:Default:hot.html.twig', array('events' => $events));
     }
 
     public function upcomingAction()
@@ -21,7 +21,7 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $events = $em->getRepository('joindindefaultBundle:Events')->findUpcomingEvents(5);
-        return $this->render('joindindefaultBundle:Event:upcoming.html.twig', array('events' => $events));
+        return $this->render('joindinEventBundle:Default:upcoming.html.twig', array('events' => $events));
     }
 
     public function pastAction()
@@ -29,7 +29,7 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $events = $em->getRepository('joindindefaultBundle:Events')->findUpcomingEvents(5);
-        return $this->render('joindindefaultBundle:Event:past.html.twig', array('events' => $events));
+        return $this->render('joindinEventBundle:Default:past.html.twig', array('events' => $events));
     }
 
     public function allAction()
@@ -37,7 +37,6 @@ class EventController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $events = $em->getRepository('joindindefaultBundle:Events')->findAllEvents(5);
-        return $this->render('joindindefaultBundle:Event:all.html.twig', array('events' => $events));
+        return $this->render('joindinEventBundle:Default:all.html.twig', array('events' => $events));
     }
-
 }

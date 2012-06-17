@@ -20,6 +20,9 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
             new joindin\defaultBundle\joindindefaultBundle(),
+            new joindin\BlogBundle\joindinBlogBundle(),
+            new joindin\EventBundle\joindinEventBundle(),
+            new joindin\TalkBundle\joindinTalkBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

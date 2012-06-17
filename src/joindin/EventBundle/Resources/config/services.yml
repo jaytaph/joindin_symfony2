@@ -1,0 +1,7 @@
+parameters:
+#    joindin_event.example.class: joindin\EventBundle\Example
+
+services:
+#    joindin_event.example:
+#        class: %joindin_event.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

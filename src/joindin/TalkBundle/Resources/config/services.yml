@@ -1,0 +1,7 @@
+parameters:
+#    joindin_talk.example.class: joindin\TalkBundle\Example
+
+services:
+#    joindin_talk.example:
+#        class: %joindin_talk.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
