@@ -1,3 +1,0 @@
-about:
-    pattern:  /
-    defaults: { _controller: jidefaultBundle:About:index }

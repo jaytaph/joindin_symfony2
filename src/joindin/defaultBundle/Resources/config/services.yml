@@ -1,0 +1,7 @@
+parameters:
+#    joindindefault.example.class: joindin\defaultBundle\Example
+
+services:
+#    joindindefault.example:
+#        class: %joindindefault.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

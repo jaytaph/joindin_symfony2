@@ -1,0 +1,15 @@
+blog:
+    pattern:  /
+    defaults: { _controller: joindindefaultBundle:Blog:index }
+
+blog_edit:
+    pattern:  /edit/{blog}
+    defaults: { _controller: joindindefaultBundle:Blog:edit }
+
+blog_delete:
+    pattern:  /delete/{blog}
+    defaults: { _controller: joindindefaultBundle:Blog:delete }
+
+blog_add:
+    pattern:  /add
+    defaults: { _controller: joindindefaultBundle:Blog:add }
