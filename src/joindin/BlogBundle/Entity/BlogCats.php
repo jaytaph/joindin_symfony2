@@ -1,11 +1,11 @@
 <?php
 
-namespace joindin\defaultBundle\Entity;
+namespace joindin\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * joindin\defaultBundle\Entity\BlogCats
+ * joindin\BlogBundle\Entity\BlogCats
  *
  * @ORM\Table(name="blog_cats")
  * @ORM\Entity
