@@ -1,3 +1,7 @@
+joindinEventBundle_main:
+    pattern:  /
+    defaults: { _controller: joindinEventBundle:Default:index }
+
 joindinEventBundle_hot_events:
     pattern:  /hot
     defaults: { _controller: joindinEventBundle:Default:hot }

@@ -2,6 +2,6 @@ help_page:
     pattern:  /{what}
     defaults: { _controller: joindindefaultBundle:Help:page }
 
-help:
+static_help:
     pattern:  /
     defaults: { _controller: joindindefaultBundle:Help:index }

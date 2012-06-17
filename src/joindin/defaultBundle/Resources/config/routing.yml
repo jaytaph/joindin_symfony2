@@ -9,3 +9,7 @@ help:
 about:
     resource: "@joindindefaultBundle/Resources/config/routes/about.yml"
     prefix:   /about
+
+contact:
+    resource: "@joindindefaultBundle/Resources/config/routes/contact.yml"
+    prefix:   /about/contact

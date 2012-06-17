@@ -1,3 +1,3 @@
-blog:
+joindinBlogBundle_main:
     pattern:  /
     defaults: { _controller: joindinBlogBundle:Default:index }
