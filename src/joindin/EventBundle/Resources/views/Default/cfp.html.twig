@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Open Call for Papers{% endblock %}
+
+{% block body %}
+<div class="box">
+
+{% for event in events %}
+    {% include "joindinEventBundle:Default:event_row.html.twig" %}
+{% else %}
+    No events with open call for papers are found.
+{% endfor %}
+
+</div>
+
+{% endblock %}

@@ -13,3 +13,8 @@ joindinEventBundle_all_events:
 joindinEventBundle_upcoming_past:
     pattern:  /past
     defaults: { _controller: joindinEventBundle:Default:past }
+
+joindinEventBundle_callforpapers_events:
+    pattern:  /callforpapers
+    defaults: { _controller: joindinEventBundle:Default:callforpapers }
+

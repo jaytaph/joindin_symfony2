@@ -103,6 +103,18 @@ class EventsRepository extends EntityRepository
         return $this->_getEvents($qb);
     }
 
+    function findOpenCfPEvents($limit = 10) {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->orderBy('e.eventCfpEnd', 'ASC');
+        $qb->where('e.eventCfpStart <= ' . mktime(0,0,0, date('m'), date('d'), date('Y')));
+        $qb->andWhere('e.eventCfpEnd >= ' . mktime(0,0,0, date('m'), date('d'), date('Y')));
+
+        $qb->setMaxResults($limit);
+
+        return $this->_getEvents($qb);
+    }
+
 
     /**
      * Returns events based on the query builder. Can (and should) have prefilled fields (like ordering and where clauses)
