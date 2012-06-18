@@ -202,11 +202,16 @@ class Events
      */
     protected $talks;
 
+    /**
+     * @ORM\OneToMany(targetEntity="joindin\EventBundle\Entity\EventTrack", mappedBy="event")
+     */
+    protected $tracks;
+
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -226,7 +231,7 @@ class Events
     /**
      * Get eventName
      *
-     * @return string 
+     * @return string
      */
     public function getEventName()
     {
@@ -246,7 +251,7 @@ class Events
     /**
      * Get eventStart
      *
-     * @return integer 
+     * @return integer
      */
     public function getEventStart()
     {
@@ -266,7 +271,7 @@ class Events
     /**
      * Get eventEnd
      *
-     * @return integer 
+     * @return integer
      */
     public function getEventEnd()
     {
@@ -286,7 +291,7 @@ class Events
     /**
      * Get eventLat
      *
-     * @return decimal 
+     * @return decimal
      */
     public function getEventLat()
     {
@@ -306,7 +311,7 @@ class Events
     /**
      * Get eventLong
      *
-     * @return decimal 
+     * @return decimal
      */
     public function getEventLong()
     {
@@ -326,7 +331,7 @@ class Events
     /**
      * Get eventLoc
      *
-     * @return text 
+     * @return text
      */
     public function getEventLoc()
     {
@@ -346,7 +351,7 @@ class Events
     /**
      * Get eventDesc
      *
-     * @return text 
+     * @return text
      */
     public function getEventDesc()
     {
@@ -366,7 +371,7 @@ class Events
     /**
      * Get active
      *
-     * @return integer 
+     * @return integer
      */
     public function getActive()
     {
@@ -386,7 +391,7 @@ class Events
     /**
      * Get eventStub
      *
-     * @return string 
+     * @return string
      */
     public function getEventStub()
     {
@@ -406,7 +411,7 @@ class Events
     /**
      * Get eventIcon
      *
-     * @return string 
+     * @return string
      */
     public function getEventIcon()
     {
@@ -426,7 +431,7 @@ class Events
     /**
      * Get pending
      *
-     * @return integer 
+     * @return integer
      */
     public function getPending()
     {
@@ -446,7 +451,7 @@ class Events
     /**
      * Get eventHashtag
      *
-     * @return string 
+     * @return string
      */
     public function getEventHashtag()
     {
@@ -466,7 +471,7 @@ class Events
     /**
      * Get eventHref
      *
-     * @return string 
+     * @return string
      */
     public function getEventHref()
     {
@@ -486,7 +491,7 @@ class Events
     /**
      * Get eventCfpStart
      *
-     * @return integer 
+     * @return integer
      */
     public function getEventCfpStart()
     {
@@ -506,7 +511,7 @@ class Events
     /**
      * Get eventCfpEnd
      *
-     * @return integer 
+     * @return integer
      */
     public function getEventCfpEnd()
     {
@@ -526,7 +531,7 @@ class Events
     /**
      * Get eventVoting
      *
-     * @return string 
+     * @return string
      */
     public function getEventVoting()
     {
@@ -546,7 +551,7 @@ class Events
     /**
      * Get private
      *
-     * @return string 
+     * @return string
      */
     public function getPrivate()
     {
@@ -566,7 +571,7 @@ class Events
     /**
      * Get eventTzCont
      *
-     * @return string 
+     * @return string
      */
     public function getEventTzCont()
     {
@@ -586,7 +591,7 @@ class Events
     /**
      * Get eventTzPlace
      *
-     * @return string 
+     * @return string
      */
     public function getEventTzPlace()
     {
@@ -606,7 +611,7 @@ class Events
     /**
      * Get eventContactName
      *
-     * @return string 
+     * @return string
      */
     public function getEventContactName()
     {
@@ -626,7 +631,7 @@ class Events
     /**
      * Get eventContactEmail
      *
-     * @return string 
+     * @return string
      */
     public function getEventContactEmail()
     {
@@ -646,7 +651,7 @@ class Events
     /**
      * Get eventCfpUrl
      *
-     * @return string 
+     * @return string
      */
     public function getEventCfpUrl()
     {
@@ -660,7 +665,7 @@ class Events
         $this->attendees = new \Doctrine\Common\Collections\ArrayCollection();
         $this->talks = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     /**
      * Add comments
      *
@@ -676,7 +681,7 @@ class Events
     /**
      * Get comments
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getComments()
     {
@@ -698,7 +703,7 @@ class Events
     /**
      * Get attendees
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getAttendees()
     {
@@ -720,7 +725,7 @@ class Events
     /**
      * Get talks
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getTalks()
     {
@@ -768,10 +773,32 @@ class Events
     /**
      * Get admins
      *
-     * @return Doctrine\Common\Collections\Collection 
+     * @return Doctrine\Common\Collections\Collection
      */
     public function getAdmins()
     {
         return $this->admins;
+    }
+
+    /**
+     * Add tracks
+     *
+     * @param joindin\EventBundle\Entity\EventTrack $tracks
+     * @return Events
+     */
+    public function addEventTrack(\joindin\EventBundle\Entity\EventTrack $tracks)
+    {
+        $this->tracks[] = $tracks;
+        return $this;
+    }
+
+    /**
+     * Get tracks
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTracks()
+    {
+        return $this->tracks;
     }
 }

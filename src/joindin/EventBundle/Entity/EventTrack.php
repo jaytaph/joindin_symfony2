@@ -50,6 +50,18 @@ class EventTrack
     private $trackColor;
 
 
+    /**
+     * @ORM\ManyToOne(targetEntity="joindin\EventBundle\Entity\Events", inversedBy="id")
+     */
+    protected $event;
+
+
+    /**
+     * @ORM\ManyToMany(targetEntity="joindin\TalkBundle\Entity\Talks", mappedBy="track")
+     */
+    protected $talks;
+
+
 
     /**
      * Get id
@@ -139,5 +151,54 @@ class EventTrack
     public function getTrackColor()
     {
         return $this->trackColor;
+    }
+    public function __construct()
+    {
+        $this->event = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->talks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add event
+     *
+     * @param joindin\EventBundle\Entity\Events $event
+     * @return EventTrack
+     */
+    public function addEvents(\joindin\EventBundle\Entity\Events $event)
+    {
+        $this->event[] = $event;
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * Add talks
+     *
+     * @param joindin\TalkBundle\Entity\Talks $talks
+     * @return EventTrack
+     */
+    public function addTalks(\joindin\TalkBundle\Entity\Talks $talks)
+    {
+        $this->talks[] = $talks;
+        return $this;
+    }
+
+    /**
+     * Get talks
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTalks()
+    {
+        return $this->talks;
     }
 }

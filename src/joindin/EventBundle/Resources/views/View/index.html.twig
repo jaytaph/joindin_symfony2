@@ -57,8 +57,12 @@
     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
         <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active ui-state-focus"><a href="/event/view/{{event.id}}/talks#event-tabs" rel="talks">Talks ({{ event.talks | length }})</a></li>
         <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/comments#event-tabs" rel="comments">Comments ( {{ event.comments|length }})</a></li>
+{% if event.talkswithslides|length > 0 %}
         <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/slides#event-tabs" rel="slides">Slides ({{ event.talkswithslides|length }})</a></li>
-        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/tracks#event-tabs" rel="tracks">Tracks (?)</a></li>
+{% endif %}
+{% if event.tracks|length > 0 %}
+        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/tracks#event-tabs" rel="tracks">Tracks ({{ event.tracks|length }})</a></li>
+{% endif %}
     </ul>
 
     <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="talks">
@@ -186,8 +190,8 @@
 {% else %}
 
                     <table summary="" cellpadding="0" cellspacing="0" border="0" width="100%" class="list">
-                    <tr class="row1">
         {% for talk in event.talkswithslides %}
+                    <tr class="row{{ loop.index }}">
                         <td>
                             <a href="/talk/view/{{talk.id}}">{{ talk.talkTitle }}</a>
                         </td>
@@ -197,13 +201,54 @@
                         <td>
                             <a href="{{ talk.slidesLink }}">Slides</a>
                         </td>
-        {% endfor %}
                     </tr>
+        {% endfor %}
                     </table>
 {% endif %}
                 </div>
             </div>
         </div>
+
+    <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="tracks">
+        <div class="ui-widget">
+            <div id="tracks">
+
+{% if event.tracks|length == 0 %}
+                <div class="ui-widget">
+                    <div class="ui-state-highlight ui-corner-all">
+                        <span class="ui-icon ui-icon-info">&nbsp;</span>
+                        <div class="msg">
+                            No tracks.
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+{% else %}
+
+
+                <table summary="" cellpadding="0" cellspacing="0" border="0" width="100%" class="list">
+    {% for track in event.tracks %}
+                <tr class="row{{ loop.index }}">
+                    <td>
+                        {% if (track.talks|length > 0) %}
+                        <a href="/event/view/{{event.id}}/track/{{ track.id }}">{{ track.trackName }}</a>
+                        {% else %}
+                        {{ track.trackName }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {{ track.trackDesc | slice(0, 75) }}
+                    </td>
+                    <td>
+                        {{ track.talks|length }} sessions
+                    </td>
+                </tr>
+    {% endfor %}
+                </table>
+{% endif %}
+            </div>
+        </div>
+    </div>
 
 </div>
 {% endblock %}

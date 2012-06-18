@@ -89,6 +89,12 @@ class Talks
      */
     protected $event;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="joindin\EventBundle\Entity\EventTrack", inversedBy="id")
+     * @ORM\JoinTable(name="talk_track")
+     */
+    protected $track;
+
 
     /**
      * @ORM\OneToMany(targetEntity="joindin\TalkBundle\Entity\TalkComments", mappedBy="talk")
@@ -364,5 +370,27 @@ class Talks
     public function getCategories()
     {
         return $this->categories;
+    }
+
+    /**
+     * Add track
+     *
+     * @param joindin\EventBundle\Entity\EventTrack $track
+     * @return Talks
+     */
+    public function addEventTrack(\joindin\EventBundle\Entity\EventTrack $track)
+    {
+        $this->track[] = $track;
+        return $this;
+    }
+
+    /**
+     * Get track
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTrack()
+    {
+        return $this->track;
     }
 }
