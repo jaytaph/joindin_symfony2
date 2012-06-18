@@ -1,0 +1,25 @@
+{% if event.attendees | length == 0 %}
+<div class="ui-widget">
+    <div class="ui-state-highlight ui-corner-all">
+        <span class="ui-icon ui-icon-info">&nbsp;</span>
+        <div class="msg">
+            No attendees so far.
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+
+{% else %}
+
+<ul>
+{% for user in event.attendees %}
+    <li>
+        <a href="/user/view/{{ user.id}}">{{ user.fullname ? user.fullname : user.username}}</a>
+        {% if event.isSpeaker(user) %}
+        <span style="font-size:10px;font-weight:bold;color:#ED9D1E">speaker</span>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>
+
+{% endif %}

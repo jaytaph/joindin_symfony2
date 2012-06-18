@@ -9,3 +9,7 @@ joindinEventBundle_defaults:
 joindinEventBundle_views:
     resource: "@joindinEventBundle/Resources/config/routes/view.yml"
     prefix:   /
+
+joindinEventBundle_attendees:
+    resource: "@joindinEventBundle/Resources/config/routes/attendees.yml"
+    prefix:   /

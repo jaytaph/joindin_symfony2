@@ -1,0 +1,5 @@
+joindinEventBundle_attendees_main:
+    pattern:  /attendees/{id}
+    defaults: { _controller: joindinEventBundle:Attendees:index }
+    requirements:
+        id:  \d+

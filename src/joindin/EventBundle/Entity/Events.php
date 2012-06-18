@@ -191,7 +191,6 @@ class Events
      */
     protected $attendees;
 
-
     /**
      * @ORM\OneToMany(targetEntity="joindin\defaultBundle\Entity\UserEventAdmin", mappedBy="event")
      */
