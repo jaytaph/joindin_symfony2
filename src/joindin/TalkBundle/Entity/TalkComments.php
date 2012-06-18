@@ -90,6 +90,12 @@ class TalkComments
      */
     protected $talk;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="joindin\defaultBundle\Entity\User", inversedBy="id")
+     */
+    protected $user;
+
+
 
 
     /**
@@ -302,5 +308,27 @@ class TalkComments
     public function getTalk()
     {
         return $this->talk;
+    }
+
+    /**
+     * Set user
+     *
+     * @param joindin\defaultBundle\Entity\User $user
+     * @return TalkComments
+     */
+    public function setUser(\joindin\defaultBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return joindin\defaultBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

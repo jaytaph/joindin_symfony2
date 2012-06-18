@@ -1,0 +1,5 @@
+joindinTalkBundle_view_details:
+    pattern:  /view/{id}
+    defaults: { _controller: joindinTalkBundle:View:index }
+    requirements:
+        id:  \d+

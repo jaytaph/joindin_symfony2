@@ -81,7 +81,7 @@
                         <span class="talk-type talk-type-{{talk.categories[0].catTitle | lower}} title="{{talk.categories[0].catTitle}}">{{ talk.categories[0].catTitle }}</span>
                     </td>
                     <td>
-                        <a href="/talk/view/{{talk.id}}">{{ talk.talkTitle }} </a>({{ talk.dateGiven|date("H:i:s")}})
+                        <a href="{{ path('joindinTalkBundle_view_details', { id: talk.id } )}}">{{ talk.talkTitle }} </a>({{ talk.dateGiven|date("H:i:s")}})
                     </td>
                     <td>
 {% for speaker in talk.speakers %}
@@ -102,7 +102,7 @@
                         {% endif %}
                     </td>
                     <td>
-                        <a class="comment-count" href="/talk/view/{{talk.id}}/#comments">{{ talk.comments|length }}</a>
+                        <a class="comment-count" href="{{ path('joindinTalkBundle_view_details', { id: talk.id } )}}/#comments">{{ talk.comments|length }}</a>
                     </td>
                 </tr>
 {% endfor %}
@@ -199,7 +199,7 @@
         {% for talk in event.talkswithslides %}
                     <tr class="row{{ loop.index }}">
                         <td>
-                            <a href="/talk/view/{{talk.id}}">{{ talk.talkTitle }}</a>
+                            <a href="{{ path('joindinTalkBundle_view_details', { id: talk.id } )}}">{{ talk.talkTitle }}</a>
                         </td>
                         <td>
                             {{ talk.speaker }}

@@ -18,6 +18,12 @@ joindindefaultBundle:
     resource: "@joindindefaultBundle/Resources/config/routing.yml"
     prefix:   /
 
+event_quicklink:
+    pattern:  /{id}
+    defaults: { _controller: joindinEventBundle:View:index }
+    requirements:
+        id:  \d+
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
