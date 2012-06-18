@@ -85,6 +85,15 @@ class User
     private $requestCode;
 
 
+    /**
+     * @ORM\OneToMany(targetEntity="joindin\defaultBundle\Entity\UserEventAdmin", mappedBy="user")
+     */
+    protected $admins;
+
+
+    // protected $events_attended;
+
+
 
     /**
      * Get id
@@ -274,5 +283,31 @@ class User
     public function getRequestCode()
     {
         return $this->requestCode;
+    }
+    public function __construct()
+    {
+        $this->admins = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add admins
+     *
+     * @param joindin\EventBundle\Entity\UserEventAdmin $admins
+     * @return User
+     */
+    public function addUserEventAdmin(\joindin\defaultBundle\Entity\UserEventAdmin $admins)
+    {
+        $this->admins[] = $admins;
+        return $this;
+    }
+
+    /**
+     * Get admins
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAdmins()
+    {
+        return $this->admins;
     }
 }

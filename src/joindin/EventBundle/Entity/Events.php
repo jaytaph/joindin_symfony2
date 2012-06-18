@@ -191,6 +191,12 @@ class Events
      */
     protected $attendees;
 
+
+    /**
+     * @ORM\OneToMany(targetEntity="joindin\defaultBundle\Entity\UserEventAdmin", mappedBy="event")
+     */
+    protected $admins;
+
     /**
      * @ORM\OneToMany(targetEntity="joindin\TalkBundle\Entity\Talks", mappedBy="event")
      */
@@ -731,5 +737,41 @@ class Events
     {
         $this->attendees[] = $attendees;
         return $this;
+    }
+
+
+    /**
+     * Return a collection with talks that have slides
+     * @return mixed
+     */
+    public function getTalksWithSlides() {
+        return $this->getTalks()->filter(
+            function(\joindin\TalkBundle\Entity\Talks $talk) {
+                $link = $talk->getSlidesLink();
+                return (! empty($link));
+            }
+        );
+    }
+
+    /**
+     * Add admins
+     *
+     * @param joindin\EventBundle\Entity\UserEventAdmin $admins
+     * @return Events
+     */
+    public function addUserEventAdmin(\joindin\defaultBundle\Entity\UserEventAdmin $admins)
+    {
+        $this->admins[] = $admins;
+        return $this;
+    }
+
+    /**
+     * Get admins
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAdmins()
+    {
+        return $this->admins;
     }
 }

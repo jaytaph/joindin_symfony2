@@ -42,7 +42,9 @@
 
         <table cellpadding="5" cellspacing="0" border="0">
         <tr>
-            <td style="padding-right:5px;font-size:11px"><a href="/user/view/12978">Josh Adell</a></td>
+            {% for admin in event.admins %}
+            <td style="padding-right:5px;font-size:11px"><a href="/user/view/{{ admin.user.id }}">{{ admin.user.fullname }}</a></td>
+            {% endfor %}
         </tr>
         </table>
     </div>
@@ -53,9 +55,10 @@
 
 <div id="event-tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active ui-state-focus"><a href="/event/view/{{event.id}}/talks#event-tabs" rel="talks">Talks (1)</a></li>
-        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/comments#event-tabs" rel="comments">Comments (0)</a></li>
-        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/slides#event-tabs" rel="slides">Slides (1)</a></li>
+        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active ui-state-focus"><a href="/event/view/{{event.id}}/talks#event-tabs" rel="talks">Talks ({{ event.talks | length }})</a></li>
+        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/comments#event-tabs" rel="comments">Comments ( {{ event.comments|length }})</a></li>
+        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/slides#event-tabs" rel="slides">Slides ({{ event.talkswithslides|length }})</a></li>
+        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/tracks#event-tabs" rel="tracks">Tracks (?)</a></li>
     </ul>
 
     <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="talks">
@@ -101,6 +104,8 @@
     <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="comments">
         <div class="ui-widget">
             <div id="comments">
+
+{% if event.comments|length == 0 %}
                 <div class="ui-widget">
                     <div class="ui-state-highlight ui-corner-all">
                         <span class="ui-icon ui-icon-info">&nbsp;</span>
@@ -110,6 +115,27 @@
                         <div class="clear"></div>
                     </div>
                 </div>
+{% else %}
+                {% for comment in event.comments %}
+                    <div id="comment-{{ comment.id }}" class="row row-event-comment">
+                        <div class="text">
+                            <p class="info">
+                                <strong>{{ comment.dateMade | date("d-M-Y") }} at {{ comment.dateMade | date("H:i") }}</strong> by
+{% if comment.user == null %}
+                                <strong><span class="anonymous">Anonymous</span></strong>
+{% else %}
+                                <strong><a href="/user/view/18840">{{ comment.user.username }}</a></strong>
+{% endif %}
+                                (Feedback)
+                            </p>
+                            <div class="desc">
+                                <p>{{ comment.comment }}</p>
+                            </div>
+                                    </div>
+                        <div class="clear"></div>
+                    </div>
+                {% endfor %}
+{% endif %}
 
                 <h3 id="comment-form">Write a comment</h3>
                 <form action="https://joind.in/event/view/994#comment-form" method="post" class="form-event">
@@ -147,19 +173,34 @@
             <div class="ui-widget">
                 <div id="slides">
 
+{% if event.talkswithslides|length == 0 %}
+                    <div class="ui-widget">
+                        <div class="ui-state-highlight ui-corner-all">
+                            <span class="ui-icon ui-icon-info">&nbsp;</span>
+                            <div class="msg">
+                                No comments yet.
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+{% else %}
+
                     <table summary="" cellpadding="0" cellspacing="0" border="0" width="100%" class="list">
                     <tr class="row1">
+        {% for talk in event.talkswithslides %}
                         <td>
-                            <a href="/talk/view/6694">Application Domain Modeling with Graph Databases </a>
+                            <a href="/talk/view/{{talk.id}}">{{ talk.talkTitle }}</a>
                         </td>
                         <td>
-                            Josh Adell
+                            {{ talk.speaker }}
                         </td>
                         <td>
-                            <a href="http://www.slideshare.net/JoshAdell/application-modeling-with-graph-databases">Slides</a>
+                            <a href="{{ talk.slidesLink }}">Slides</a>
                         </td>
+        {% endfor %}
                     </tr>
                     </table>
+{% endif %}
                 </div>
             </div>
         </div>

@@ -84,6 +84,11 @@ class EventComments
     protected $event;
 
     /**
+     * @ORM\ManyToOne(targetEntity="joindin\defaultBundle\Entity\User", inversedBy="id")
+     */
+    protected $user;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -273,5 +278,27 @@ class EventComments
     public function getEvent()
     {
         return $this->event;
+    }
+
+    /**
+     * Set user
+     *
+     * @param joindin\defaultBundle\Entity\User $user
+     * @return EventComments
+     */
+    public function setUser(\joindin\defaultBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return joindin\defaultBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
