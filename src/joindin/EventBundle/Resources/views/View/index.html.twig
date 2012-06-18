@@ -84,7 +84,13 @@
                         <a href="/talk/view/{{talk.id}}">{{ talk.talkTitle }} </a>({{ talk.dateGiven|date("H:i:s")}})
                     </td>
                     <td>
-                        <a href="/user/view/12978">{{talk.speaker}}</a>
+{% for speaker in talk.speakers %}
+                        {% if speaker.user %}
+                        <a href="/user/view/{{ speaker.user.id }}">{{speaker.user.fullname is empty ? speaker.user.username : speaker.user.fullname}}</a>
+                        {% else %}
+                        {{ speaker.speakername }}
+                        {% endif %}
+{% endfor %}
                     </td>
                     <td>
                         {% if talk.slidesLink %}
