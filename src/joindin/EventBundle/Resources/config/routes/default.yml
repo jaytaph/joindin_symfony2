@@ -1,0 +1,15 @@
+joindinEventBundle_hot_events:
+    pattern:  /hot
+    defaults: { _controller: joindinEventBundle:Default:hot }
+
+joindinEventBundle_upcoming_events:
+    pattern:  /upcoming
+    defaults: { _controller: joindinEventBundle:Default:upcoming }
+
+joindinEventBundle_all_events:
+    pattern:  /all
+    defaults: { _controller: joindinEventBundle:Default:all }
+
+joindinEventBundle_upcoming_past:
+    pattern:  /past
+    defaults: { _controller: joindinEventBundle:Default:past }

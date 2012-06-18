@@ -2,18 +2,10 @@ joindinEventBundle_main:
     pattern:  /
     defaults: { _controller: joindinEventBundle:Default:index }
 
-joindinEventBundle_hot_events:
-    pattern:  /hot
-    defaults: { _controller: joindinEventBundle:Default:hot }
+joindinEventBundle_defaults:
+    resource: "@joindinEventBundle/Resources/config/routes/default.yml"
+    prefix:   /
 
-joindinEventBundle_upcoming_events:
-    pattern:  /upcoming
-    defaults: { _controller: joindinEventBundle:Default:upcoming }
-
-joindinEventBundle_all_events:
-    pattern:  /all
-    defaults: { _controller: joindinEventBundle:Default:all }
-
-joindinEventBundle_upcoming_past:
-    pattern:  /past
-    defaults: { _controller: joindinEventBundle:Default:past }
+joindinEventBundle_views:
+    resource: "@joindinEventBundle/Resources/config/routes/view.yml"
+    prefix:   /

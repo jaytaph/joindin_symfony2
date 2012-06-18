@@ -13,7 +13,7 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
-    {% block javascript %}{% endblock %}
+    {% block head_javascript %}{% endblock %}
     <script type="text/javascript" src="/inc/js/jquery.js"></script>
     <script type="text/javascript" src="/inc/js/jquery.pause.js"></script>
     <script type="text/javascript" src="/inc/js/jquery-ui.js"></script>
@@ -31,10 +31,14 @@
         <div class="grid_12">
             <div class="usr">
                 <div class="wrapper">
-                                    Logged in as <strong><a href="/user/view/2">tsoto</a></strong> |
+{% if app.user != null %}
+                    Logged in as <strong><a href="/user/view/2">tsoto</a></strong> |
                     <a href="/user/main">Account</a> |
                     <a href="/user/logout">Logout</a>
-                                </div>
+{% else %}
+                    <a href="/login">Login</a> or <a href="/register">Register</a>
+{% endif %}
+                </div>
                 <div class="clear"></div>
             </div>
         </div>
@@ -72,6 +76,11 @@
         <div class="grid_8">
             <div class="main">
 
+{# Only display the "new to joind.in" when you are not logged in #}
+{% if app.user == null %}
+            {% include "::new.html.twig" %}
+{% endif %}
+
 {% block body %}{% endblock %}
 
             </div>
@@ -80,16 +89,14 @@
 
 {% block sidebar %}
         <div class="sidebar">
-            <div class="box">
-            <h4>Submit your event</h4>
-            <div class="ctn">
-                <p>
-                    Know of an event happening? Let us know! We love to get the word out about events the community would be interested in and you can help us spread the word!
-                </p>
-                <p style="text-align:center">
-                    <a href="/event/submit" class="btn-big">Submit your event!</a>
-                </p>
-            </div>
+            {% if app.user != null %}
+                {% include "::sidebar/user_panel.html.twig" %}
+            {% else %}
+                {% include "::sidebar/login.html.twig" %}
+                {% include "::sidebar/sponsor.html.twig" %}
+            {% endif %}
+            {% include "::sidebar/submit_event.html.twig" %}
+            {% include "::sidebar/call_for_papers.html.twig" %}
         </div>
 {% endblock %}
 
@@ -113,9 +120,7 @@
         </div>
 
         <div class="grid_6 rgt">
-            <a href="http://www.combell.com/en/servers/cloud-server" title="Cloud servers & cloud hosting">Cloud server</a>
-            <a href="http://www.combell.com/en" title="Hosting & webhosting">hosting</a> by Combell
-            <a href="http://www.combell.com/en" title="Cloud hosting Combell"><img src="/inc/img/LOGO-COMBELL_small.gif" border="0" style="vertical-align:text-bottom;" alt="Combell" height="22" width="80"/></a>
+            {% include "::combell.html.twig" %}
             &nbsp;&nbsp;&nbsp;&nbsp;
             &copy; Joind.in {{ "now"|date("Y") }}</div>
             <div class="clear"></div>
@@ -125,6 +130,10 @@
     <div id="jQueryUImessageBox" style="display:none"></div>
 
     {% include "::analytics.html.twig" %}
+
+
+    {# Include all javascript #}
+    {% block javascript %}{% endblock %}
 
 </body>
 </html>

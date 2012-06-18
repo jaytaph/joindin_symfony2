@@ -15,7 +15,7 @@ class Talks
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -84,6 +84,25 @@ class Talks
      */
     private $lang;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="joindin\EventBundle\Entity\Events", inversedBy="id")
+     */
+    protected $event;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="joindin\TalkBundle\Entity\TalkComments", mappedBy="talk")
+     */
+    protected $comments;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="joindin\defaultBundle\Entity\Categories")
+     * @ORM\JoinTable(name="talk_cat",
+     *      joinColumns={@ORM\JoinColumn(name="talk_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="cat_id", referencedColumnName="id")}
+     *      )
+     */
+    protected $categories;
 
 
     /**
@@ -274,5 +293,76 @@ class Talks
     public function getLang()
     {
         return $this->lang;
+    }
+
+    /**
+     * Set event
+     *
+     * @param joindin\EventBundle\Entity\Events $event
+     * @return Talks
+     */
+    public function setEvent(\joindin\EventBundle\Entity\Events $event = null)
+    {
+        $this->event = $event;
+        return $this;
+    }
+
+    /**
+     * Get event
+     *
+     * @return joindin\EventBundle\Entity\Events 
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+    public function __construct()
+    {
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Add comments
+     *
+     * @param joindin\TalkBundle\Entity\TalkComments $comments
+     * @return Talks
+     */
+    public function addTalkComments(\joindin\TalkBundle\Entity\TalkComments $comments)
+    {
+        $this->comments[] = $comments;
+        return $this;
+    }
+
+    /**
+     * Get comments
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param joindin\defaultBundle\Entity\Categories $categories
+     * @return Talks
+     */
+    public function addCategories(\joindin\defaultBundle\Entity\Categories $categories)
+    {
+        $this->categories[] = $categories;
+        return $this;
+    }
+
+    /**
+     * Get categories
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

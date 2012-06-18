@@ -16,7 +16,7 @@ class Events
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -181,6 +181,21 @@ class Events
      * @ORM\OneToMany(targetEntity="joindin\EventBundle\Entity\EventComments", mappedBy="event")
      */
     protected $comments;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="joindin\defaultBundle\Entity\User")
+     * @ORM\JoinTable(name="user_attend",
+     *      joinColumns={@ORM\JoinColumn(name="eid", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="uid", referencedColumnName="id")}
+     *      )
+     */
+    protected $attendees;
+
+    /**
+     * @ORM\OneToMany(targetEntity="joindin\TalkBundle\Entity\Talks", mappedBy="event")
+     */
+    protected $talks;
+
 
     /**
      * Get id
@@ -636,6 +651,8 @@ class Events
     public function __construct()
     {
         $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->attendees = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->talks = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     /**
@@ -658,5 +675,61 @@ class Events
     public function getComments()
     {
         return $this->comments;
+    }
+
+    /**
+     * Add attendees
+     *
+     * @param joindin\defaultBundle\Entity\User $attendees
+     * @return Events
+     */
+    public function addAttendee(\joindin\defaultBundle\Entity\User $attendees)
+    {
+        $this->attendees[] = $attendees;
+        return $this;
+    }
+
+    /**
+     * Get attendees
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getAttendees()
+    {
+        return $this->attendees;
+    }
+
+    /**
+     * Add talks
+     *
+     * @param joindin\TalkBundle\Entity\Talks $talks
+     * @return Events
+     */
+    public function addTalks(\joindin\TalkBundle\Entity\Talks $talks)
+    {
+        $this->talks[] = $talks;
+        return $this;
+    }
+
+    /**
+     * Get talks
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTalks()
+    {
+        return $this->talks;
+    }
+
+    /**
+     * Add attendees
+     *
+     * @param joindin\defaultBundle\Entity\User $attendees
+     * @return Events
+     */
+    public function addUser(\joindin\defaultBundle\Entity\User $attendees)
+    {
+        $this->attendees[] = $attendees;
+        return $this;
     }
 }

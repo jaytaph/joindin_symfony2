@@ -1,0 +1,5 @@
+joindinEventBundle_view_details:
+    pattern:  /view/{id}
+    defaults: { _controller: joindinEventBundle:View:index }
+    requirements:
+        id:  \d+

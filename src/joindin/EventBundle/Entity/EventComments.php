@@ -15,7 +15,7 @@ class EventComments
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -79,7 +79,7 @@ class EventComments
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="joindin\EventBundle\Entity\Events", inversedBy="ID")
+     * @ORM\ManyToOne(targetEntity="joindin\EventBundle\Entity\Events", inversedBy="id")
      */
     protected $event;
 

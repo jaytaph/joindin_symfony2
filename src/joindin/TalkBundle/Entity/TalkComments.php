@@ -15,7 +15,7 @@ class TalkComments
     /**
      * @var integer $id
      *
-     * @ORM\Column(name="ID", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -83,6 +83,12 @@ class TalkComments
      * @ORM\Column(name="source", type="string", length=25, nullable=true)
      */
     private $source;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="joindin\TalkBundle\Entity\Talks", inversedBy="id")
+     */
+    protected $talk;
 
 
 
@@ -274,5 +280,27 @@ class TalkComments
     public function getSource()
     {
         return $this->source;
+    }
+
+    /**
+     * Set talk
+     *
+     * @param joindin\TalkBundle\Entity\TalkComments $talk
+     * @return TalkComments
+     */
+    public function setTalk(\joindin\TalkBundle\Entity\TalkComments $talk = null)
+    {
+        $this->talk = $talk;
+        return $this;
+    }
+
+    /**
+     * Get talk
+     *
+     * @return joindin\TalkBundle\Entity\TalkComments 
+     */
+    public function getTalk()
+    {
+        return $this->talk;
     }
 }

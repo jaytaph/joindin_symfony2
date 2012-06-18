@@ -1,0 +1,192 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Event: {{ event.eventName}}{% endblock %}
+
+{% block body %}
+
+
+<div class="detail">
+
+    <div class="header">
+        <div class="img">
+            <div class="frame">
+                <img src="/inc/img/event_icons/none.gif" alt="{{ event.eventName }}" height="90" width="90" />
+            </div>
+        </div>
+
+        <div class="title">
+            <div class="head">
+                <input type="hidden" name="eid" id="eid" value="{{ event.id }}"/>
+                <h1>{{ event.eventName }}</h1>
+                <p class="info">
+                    <strong>{{ event.eventStart | date("d.M.Y") }}</strong> - <strong>{{ event.eventEnd | date("d.M.Y") }}</strong>
+                    <br/>
+                    <strong>{{ event.eventLoc}}</strong>
+                </p>
+
+                <p class="opts">
+                    <a class="btn" id="mark-attending" href="javascript:void(0);" onclick="return markAttending(this,{{event.id}},true);">I attended</a>
+                    <span class="attending"><strong><span class="event-attend-count-{{ event.id }}">{{ event.attendees|length}}</span> people</strong>  said they attended. <a href="javascript:void(0);" id="toggle-attendees" class="show">Show &raquo;</a></span>
+                </p>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="desc">
+        <p>{{ event.eventDesc }}</p>
+        <hr/>
+
+        <b>Your host(s):</b><br/>
+
+        <table cellpadding="5" cellspacing="0" border="0">
+        <tr>
+            <td style="padding-right:5px;font-size:11px"><a href="/user/view/12978">Josh Adell</a></td>
+        </tr>
+        </table>
+    </div>
+
+</div>
+
+<p class="admin"></p>
+
+<div id="event-tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
+    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active ui-state-focus"><a href="/event/view/{{event.id}}/talks#event-tabs" rel="talks">Talks (1)</a></li>
+        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/comments#event-tabs" rel="comments">Comments (0)</a></li>
+        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/slides#event-tabs" rel="slides">Slides (1)</a></li>
+    </ul>
+
+    <div class="ui-tabs-panel ui-widget-content ui-corner-bottom" id="talks">
+        <div class="ui-widget">
+            <div id="talks">
+                <table summary="" cellpadding="0" cellspacing="0" border="0" width="100%" class="list">
+                <tr>
+{# @TODO: Make sure that we get the talks PER DAY so we can do this... #}
+                    <th colspan="5">
+                        <h4 id="talks">15.Jun.2012</h4>
+                    </th>
+                </tr>
+{% for talk in event.talks %}
+                <tr class="row1">
+                    <td>
+                        <span class="talk-type talk-type-{{talk.categories[0].catTitle | lower}} title="{{talk.categories[0].catTitle}}">{{ talk.categories[0].catTitle }}</span>
+                    </td>
+                    <td>
+                        <a href="/talk/view/{{talk.id}}">{{ talk.talkTitle }} </a>({{ talk.dateGiven|date("H:i:s")}})
+                    </td>
+                    <td>
+                        <a href="/user/view/12978">{{talk.speaker}}</a>
+                    </td>
+                    <td>
+                        {% if talk.slidesLink %}
+                        <a class="slides" target="new" href="{{ talk.slidesLink }}">
+                            <img style='vertical-align:text-top;' alt="Slides available" src="/inc/img/icon-slides.gif">
+                        </a>
+                        {% else %}
+                        &nbsp;
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a class="comment-count" href="/talk/view/{{talk.id}}/#comments">{{ talk.comments|length }}</a>
+                    </td>
+                </tr>
+{% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="comments">
+        <div class="ui-widget">
+            <div id="comments">
+                <div class="ui-widget">
+                    <div class="ui-state-highlight ui-corner-all">
+                        <span class="ui-icon ui-icon-info">&nbsp;</span>
+                        <div class="msg">
+                            No comments yet.
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <h3 id="comment-form">Write a comment</h3>
+                <form action="https://joind.in/event/view/994#comment-form" method="post" class="form-event">
+                    <input type="hidden" name="hash" value="2994c74349d8f2fe989e29fb5ae024da">
+
+                    <div class="row">
+                        <label for="type">Type</label>
+                        <div class="input">Feedback</div>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="row">
+                        <label for="event_comment">Comment</label>
+                        <textarea name="event_comment" cols="40" rows="10" id="event_comment" ></textarea>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="row">
+                        <label for="cinput">Spambot check</label>
+                        <span>
+                            <input type="text" name="cinput" value="" id="cinput"  /> = <b>eight minus one</b>
+                        </span>
+                        <div class="clear"></div>
+                    </div>
+
+                    <div class="row row-buttons">
+                        <input type="submit" name="sub" value="Submit Comment" class="btn"  />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-tabs-panel ui-widget-content ui-corner-bottom ui-tabs-hide" id="slides">
+            <div class="ui-widget">
+                <div id="slides">
+
+                    <table summary="" cellpadding="0" cellspacing="0" border="0" width="100%" class="list">
+                    <tr class="row1">
+                        <td>
+                            <a href="/talk/view/6694">Application Domain Modeling with Graph Databases </a>
+                        </td>
+                        <td>
+                            Josh Adell
+                        </td>
+                        <td>
+                            <a href="http://www.slideshare.net/JoshAdell/application-modeling-with-graph-databases">Slides</a>
+                        </td>
+                    </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+</div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+<script type="text/javascript" src="/inc/js/jq.joindIn.js"></script>
+<script type="text/javascript" src="/inc/js/event.js"></script>
+
+<script type="text/javascript">//<![CDATA[
+    (function($) {
+        $(document).ready(function() {
+            $('#event-tabs').joindIn_tabs();
+            if (window.location.hash == '#comment-form' || window.location.hash == '#comments') {
+                window.location.hash = '#';
+                $('a[rel=comments]').click();
+            }
+        });
+    })(jQuery);
+
+    function eventOpenTab(_rel) {
+        $('#event-tabs a[rel=' + _rel + ']').click();
+    }
+
+    JI_event.init();
+//]]></script>
+{% endblock %}
