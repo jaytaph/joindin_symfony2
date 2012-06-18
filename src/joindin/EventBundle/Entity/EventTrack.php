@@ -201,4 +201,16 @@ class EventTrack
     {
         return $this->talks;
     }
+
+    /**
+     * Set event
+     *
+     * @param joindin\EventBundle\Entity\Events $event
+     * @return EventTrack
+     */
+    public function setEvent(\joindin\EventBundle\Entity\Events $event = null)
+    {
+        $this->event = $event;
+        return $this;
+    }
 }

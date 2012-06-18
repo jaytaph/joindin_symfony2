@@ -110,6 +110,11 @@ class Talks
      */
     protected $categories;
 
+    /**
+     * @ORM\OneToMany(targetEntity="joindin\TalkBundle\Entity\TalkSpeaker", mappedBy="talk")
+     */
+    protected $speakers;
+
 
     /**
      * Get id
@@ -392,5 +397,27 @@ class Talks
     public function getTrack()
     {
         return $this->track;
+    }
+
+    /**
+     * Add speakers
+     *
+     * @param joindin\TalkBundle\Entity\TalkSpeaker $speakers
+     * @return Talks
+     */
+    public function addTalkSpeaker(\joindin\TalkBundle\Entity\TalkSpeaker $speakers)
+    {
+        $this->speakers[] = $speakers;
+        return $this;
+    }
+
+    /**
+     * Get speakers
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSpeakers()
+    {
+        return $this->speakers;
     }
 }

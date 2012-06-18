@@ -50,6 +50,18 @@ class TalkSpeaker
     private $status;
 
 
+    /**
+     * @ORM\ManyToOne(targetEntity="joindin\TalkBundle\Entity\Talks", inversedBy="id")
+     */
+    protected $talk;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="joindin\defaultBundle\Entity\User", inversedBy="id")
+     * @ORM\JoinColumn(name="speaker_id", referencedColumnName="id")
+     */
+    protected $user;
+
+
 
     /**
      * Get id
@@ -139,5 +151,49 @@ class TalkSpeaker
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Set talk
+     *
+     * @param joindin\TalkBundle\Entity\Talks $talk
+     * @return TalkSpeaker
+     */
+    public function setTalk(\joindin\TalkBundle\Entity\Talks $talk = null)
+    {
+        $this->talk = $talk;
+        return $this;
+    }
+
+    /**
+     * Get talk
+     *
+     * @return joindin\TalkBundle\Entity\Talks 
+     */
+    public function getTalk()
+    {
+        return $this->talk;
+    }
+
+    /**
+     * Set user
+     *
+     * @param joindin\defaultBundle\Entity\User $user
+     * @return TalkSpeaker
+     */
+    public function setUser(\joindin\defaultBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return joindin\defaultBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

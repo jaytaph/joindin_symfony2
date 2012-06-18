@@ -800,4 +800,25 @@ class Events
     {
         return $this->tracks;
     }
+
+    /**
+     * Check if the specified user is a speaker in (one of) the talks from the event.
+     *
+     * @param \joindin\defaultBundle\Entity\User $user
+     * @return bool
+     */
+    function isSpeaker(\joindin\defaultBundle\Entity\User $user) {
+        /**
+         * @var $talk \joindin\talkBundle\Entity\Talks
+         */
+
+        foreach ($this->getTalks() as $talk) {
+            foreach ($talk->getSpeakers() as $speaker) {
+                if ($speaker->getUser() != null && $speaker->getUser()->getId() == $user->getId()) {      // Don't think I'm allowed to compare objects here
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
