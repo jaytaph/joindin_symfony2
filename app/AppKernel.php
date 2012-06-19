@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new joindin\BlogBundle\joindinBlogBundle(),
             new joindin\EventBundle\joindinEventBundle(),
             new joindin\TalkBundle\joindinTalkBundle(),
+            new joindin\UserBundle\joindinUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

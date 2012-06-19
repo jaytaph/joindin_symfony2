@@ -1,16 +1,16 @@
 <?php
 
-namespace joindin\defaultBundle\Entity;
+namespace joindin\EventBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * joindin\defaultBundle\Entity\UserEventAdmin
+ * joindin\EventBundle\Entity\EventAdmin
  *
- * @ORM\Table(name="user_event_admin")
+ * @ORM\Table(name="event_admin")
  * @ORM\Entity
  */
-class UserEventAdmin
+class EventAdmin
 {
     /**
      * @var integer $id
@@ -43,7 +43,7 @@ class UserEventAdmin
     private $rcode;
 
     /**
-     * @ORM\ManyToOne(targetEntity="joindin\defaultBundle\Entity\User", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="joindin\UserBundle\Entity\User", inversedBy="id")
      */
     protected $user;
 
@@ -68,7 +68,7 @@ class UserEventAdmin
      * Set user_id
      *
      * @param integer $userId
-     * @return UserEventAdmin
+     * @return EventAdmin
      */
     public function setUserId($userId)
     {
@@ -90,7 +90,7 @@ class UserEventAdmin
      * Set event_id
      *
      * @param integer $eventId
-     * @return UserEventAdmin
+     * @return EventAdmin
      */
     public function setEventId($eventId)
     {
@@ -112,7 +112,7 @@ class UserEventAdmin
      * Set rcode
      *
      * @param string $rcode
-     * @return UserEventAdmin
+     * @return EventAdmin
      */
     public function setRcode($rcode)
     {
@@ -133,10 +133,10 @@ class UserEventAdmin
     /**
      * Set user
      *
-     * @param joindin\defaultBundle\Entity\User $user
-     * @return UserEventAdmin
+     * @param joindin\UserBundle\Entity\User $user
+     * @return EventAdmin
      */
-    public function setUser(\joindin\defaultBundle\Entity\User $user = null)
+    public function setUser(\joindin\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
         return $this;
@@ -145,7 +145,7 @@ class UserEventAdmin
     /**
      * Get user
      *
-     * @return joindin\defaultBundle\Entity\User 
+     * @return joindin\UserBundle\Entity\User
      */
     public function getUser()
     {
@@ -156,7 +156,7 @@ class UserEventAdmin
      * Set event
      *
      * @param joindin\EventBundle\Entity\Events $event
-     * @return UserEventAdmin
+     * @return EventAdmin
      */
     public function setEvent(\joindin\EventBundle\Entity\Events $event = null)
     {

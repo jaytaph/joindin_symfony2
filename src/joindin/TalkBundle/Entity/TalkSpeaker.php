@@ -56,7 +56,7 @@ class TalkSpeaker
     protected $talk;
 
     /**
-     * @ORM\ManyToOne(targetEntity="joindin\defaultBundle\Entity\User", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="joindin\UserBundle\Entity\User", inversedBy="id")
      * @ORM\JoinColumn(name="speaker_id", referencedColumnName="id")
      */
     protected $user;
@@ -178,10 +178,10 @@ class TalkSpeaker
     /**
      * Set user
      *
-     * @param joindin\defaultBundle\Entity\User $user
+     * @param joindin\UserBundle\Entity\User $user
      * @return TalkSpeaker
      */
-    public function setUser(\joindin\defaultBundle\Entity\User $user = null)
+    public function setUser(\joindin\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
         return $this;
@@ -190,7 +190,7 @@ class TalkSpeaker
     /**
      * Get user
      *
-     * @return joindin\defaultBundle\Entity\User 
+     * @return joindin\UserBundle\Entity\User
      */
     public function getUser()
     {

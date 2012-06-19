@@ -183,7 +183,7 @@ class Events
     protected $comments;
 
     /**
-     * @ORM\ManyToMany(targetEntity="joindin\defaultBundle\Entity\User")
+     * @ORM\ManyToMany(targetEntity="joindin\UserBundle\Entity\User")
      * @ORM\JoinTable(name="user_attend",
      *      joinColumns={@ORM\JoinColumn(name="eid", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="uid", referencedColumnName="id")}
@@ -192,7 +192,7 @@ class Events
     protected $attendees;
 
     /**
-     * @ORM\OneToMany(targetEntity="joindin\defaultBundle\Entity\UserEventAdmin", mappedBy="event")
+     * @ORM\OneToMany(targetEntity="joindin\EventBundle\Entity\EventAdmin", mappedBy="event")
      */
     protected $admins;
 
@@ -690,10 +690,10 @@ class Events
     /**
      * Add attendees
      *
-     * @param joindin\defaultBundle\Entity\User $attendees
+     * @param joindin\UserBundle\Entity\User $attendees
      * @return Events
      */
-    public function addAttendee(\joindin\defaultBundle\Entity\User $attendees)
+    public function addAttendee(\joindin\UserBundle\Entity\User $attendees)
     {
         $this->attendees[] = $attendees;
         return $this;
@@ -734,10 +734,10 @@ class Events
     /**
      * Add attendees
      *
-     * @param joindin\defaultBundle\Entity\User $attendees
+     * @param joindin\UserBundle\Entity\User $attendees
      * @return Events
      */
-    public function addUser(\joindin\defaultBundle\Entity\User $attendees)
+    public function addUser(\joindin\UserBundle\Entity\User $attendees)
     {
         $this->attendees[] = $attendees;
         return $this;
@@ -760,10 +760,10 @@ class Events
     /**
      * Add admins
      *
-     * @param joindin\EventBundle\Entity\UserEventAdmin $admins
+     * @param joindin\EventBundle\Entity\EventAdmin $admins
      * @return Events
      */
-    public function addUserEventAdmin(\joindin\defaultBundle\Entity\UserEventAdmin $admins)
+    public function addEventAdmin(\joindin\EventBundle\Entity\EventAdmin $admins)
     {
         $this->admins[] = $admins;
         return $this;
@@ -804,10 +804,10 @@ class Events
     /**
      * Check if the specified user is a speaker in (one of) the talks from the event.
      *
-     * @param \joindin\defaultBundle\Entity\User $user
+     * @param \joindin\UserBundle\Entity\User $user
      * @return bool
      */
-    function isSpeaker(\joindin\defaultBundle\Entity\User $user) {
+    function isSpeaker(\joindin\UserBundle\Entity\User $user) {
         /**
          * @var $talk \joindin\talkBundle\Entity\Talks
          */

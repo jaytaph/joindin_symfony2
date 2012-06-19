@@ -33,12 +33,14 @@
     <p class="quicklink">
         Quicklink: <strong><a href="{{ url("event_quicklink", {id : talk.event.id }) }}">{{ url("event_quicklink", {id : talk.event.id }) }}</a></strong>
     </p>
+{% if event.tracks|length > 0 %}
     <p class="quicklink">
         <b>Track(s):</b>
         {% for track in talk.tracks %}
           {{ track.trackName }}
         {% endfor %}
     </p>
+{% endif %}
     <div class="clear"></div>
 </div>
 <div id="claim_select_div" style="text-align:center;">

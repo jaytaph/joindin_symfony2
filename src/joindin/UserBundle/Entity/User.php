@@ -1,11 +1,11 @@
 <?php
 
-namespace joindin\defaultBundle\Entity;
+namespace joindin\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * joindin\defaultBundle\Entity\User
+ * joindin\UserBundle\Entity\User
  *
  * @ORM\Table(name="user")
  * @ORM\Entity
@@ -86,7 +86,7 @@ class User
 
 
     /**
-     * @ORM\OneToMany(targetEntity="joindin\defaultBundle\Entity\UserEventAdmin", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="joindin\EventBundle\Entity\EventAdmin", mappedBy="user")
      */
     protected $admins;
 
@@ -292,10 +292,10 @@ class User
     /**
      * Add admins
      *
-     * @param joindin\EventBundle\Entity\UserEventAdmin $admins
+     * @param joindin\EventBundle\Entity\EventAdmin $admins
      * @return User
      */
-    public function addUserEventAdmin(\joindin\defaultBundle\Entity\UserEventAdmin $admins)
+    public function addEventAdmin(\joindin\EventBundle\Entity\EventAdmin $admins)
     {
         $this->admins[] = $admins;
         return $this;

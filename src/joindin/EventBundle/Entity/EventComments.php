@@ -84,7 +84,7 @@ class EventComments
     protected $event;
 
     /**
-     * @ORM\ManyToOne(targetEntity="joindin\defaultBundle\Entity\User", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="joindin\UserBundle\Entity\User", inversedBy="id")
      */
     protected $user;
 
@@ -283,10 +283,10 @@ class EventComments
     /**
      * Set user
      *
-     * @param joindin\defaultBundle\Entity\User $user
+     * @param joindin\UserBundle\Entity\User $user
      * @return EventComments
      */
-    public function setUser(\joindin\defaultBundle\Entity\User $user = null)
+    public function setUser(\joindin\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
         return $this;
@@ -295,7 +295,7 @@ class EventComments
     /**
      * Get user
      *
-     * @return joindin\defaultBundle\Entity\User 
+     * @return joindin\UserBundle\Entity\User
      */
     public function getUser()
     {

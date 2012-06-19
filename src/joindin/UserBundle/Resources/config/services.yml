@@ -1,0 +1,7 @@
+parameters:
+#    joindin_user.example.class: joindin\UserBundle\Example
+
+services:
+#    joindin_user.example:
+#        class: %joindin_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
