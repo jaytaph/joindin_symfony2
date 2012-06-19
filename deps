@@ -75,3 +75,7 @@
     git=git://github.com/schmittjoh/JMSSerializerBundle.git
     target=bundles/JMS/SerializerBundle
 
+[OrnicarGravatarBundle]
+    git=git://github.com/ornicar/GravatarBundle.git
+    target=/bundles/Ornicar/GravatarBundle
+

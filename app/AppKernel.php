@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new joindin\defaultBundle\joindindefaultBundle(),
             new joindin\BlogBundle\joindinBlogBundle(),
             new joindin\EventBundle\joindinEventBundle(),

@@ -17,7 +17,7 @@
         {% endif %}
         {% endfor %}
         ({{ talk.dateGiven | date("d.M.Y") }} at {{ talk.dateGiven | date("h:i") }})<br>
-        Talk at <strong><a href="{{ path("joindinEventBundle_view_details", { id: talk.event.id }) }}">{{ talk.event.eventName }}</a></strong>
+        {{ talk.categories[0].catDesc }} at <strong><a href="{{ path("joindinEventBundle_view_details", { id: talk.event.id }) }}">{{ talk.event.eventName }}</a></strong>
         ({{ talk.language.langName }})
         <img src="/inc/img/flags/{{ talk.language.langAbbr}}.gif" alt="Flag of {{ talk.language.langAbbr}}">
     </p>
@@ -25,7 +25,13 @@
         <img class="rating rating-{{ talk.rating }}" src="/inc/img/rating-{{ talk.rating }}.gif" alt="Rating: {{ talk.rating }} of 5" height="21" width="117">
     </p>
     <div class="desc">
-        <span align="left"><a href="/user/view/1678"><img src="https://secure.gravatar.com/avatar/1761ecd7fe763583553dde43e62c47bd?d=mm&amp;s=50" align="left" border="0" style="margin-right:10px;" height="50" width="50"></a></span>
+        <span align="left">
+            {% for speaker in talk.speakers %}
+                {% if speaker.user != null %}
+                <a href="/user/view/{{ speaker.user.id }}"><img src="{{ gravatar(speaker.user.email, 50, "g") }}" align="left" border="0" style="margin-right:10px;" height="50" width="50"></a>
+                {% endif %}
+            {% endfor %}
+        </span>
         <p>
             {{ talk.talkDesc }}
         </p>
