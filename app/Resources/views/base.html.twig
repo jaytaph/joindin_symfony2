@@ -87,8 +87,8 @@
         </div>
         <div class="grid_4">
 
-{% block sidebar %}
         <div class="sidebar">
+{% block sidebar %}
             {% if app.user != null %}
                 {% include "::sidebar/user_panel.html.twig" %}
             {% else %}
@@ -96,9 +96,12 @@
                 {% include "::sidebar/sponsor.html.twig" %}
             {% endif %}
             {% include "::sidebar/submit_event.html.twig" %}
-            {% include "::sidebar/call_for_papers.html.twig" %}
-        </div>
+
+            {% if cfp is defined %}
+                {% include "::sidebar/call_for_papers.html.twig" %}
+            {% endif %}
 {% endblock %}
+        </div>
 
     </div>
 </div>
