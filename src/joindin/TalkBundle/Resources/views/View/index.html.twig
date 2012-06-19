@@ -9,11 +9,20 @@
         {{ talk.talkTitle }}
     </h1>
     <p class="info">
-        <strong><a href="/user/view/1678">Joshua Thijssen</a></strong> (09.Jun.2012 at 14:30)<br>
-        Talk at <strong><a href="{{ path("joindinEventBundle_view_details", { id: talk.event.id }) }}">{{ talk.event.eventName }}</a></strong> (English - US)
+        {% for speaker in talk.speakers %}
+        {% if speaker.speakerID != null %}
+            <strong><a href="/user/view/{{speaker.user.id}}">{{ speaker.user.fullname }}</a></strong>
+        {% else %}
+            <strong>{{ speaker.speakerName }}</strong>
+        {% endif %}
+        {% endfor %}
+        ({{ talk.dateGiven | date("d.M.Y") }} at {{ talk.dateGiven | date("h:i") }})<br>
+        Talk at <strong><a href="{{ path("joindinEventBundle_view_details", { id: talk.event.id }) }}">{{ talk.event.eventName }}</a></strong>
+        ({{ talk.language.langName }})
+        <img src="/inc/img/flags/{{ talk.language.langAbbr}}.gif" alt="Flag of {{ talk.language.langAbbr}}">
     </p>
     <p class="rating">
-        <img class="rating rating-4" src="/inc/img/rating-4.gif" alt="Rating: 4 of 5" height="21" width="117">
+        <img class="rating rating-{{ talk.rating }}" src="/inc/img/rating-{{ talk.rating }}.gif" alt="Rating: {{ talk.rating }} of 5" height="21" width="117">
     </p>
     <div class="desc">
         <span align="left"><a href="/user/view/1678"><img src="https://secure.gravatar.com/avatar/1761ecd7fe763583553dde43e62c47bd?d=mm&amp;s=50" align="left" border="0" style="margin-right:10px;" height="50" width="50"></a></span>
@@ -56,104 +65,9 @@
     </p>
 </div>
 
-<div class="box">
-    <h2 id="comments">
-        Comments
-    </h2>
-{% if talk.comments | length == 0 %}
+{% include "joindinTalkBundle:View:talk_comments.html.twig" %}
 
-    <div class="ui-widget">
-        <div class="ui-state-highlight ui-corner-all">
-            <span class="ui-icon ui-icon-info">&nbsp;</span>
-            <div class="msg">
-                No comments yet.        </div>
-            <div class="clear"></div>
-        </div>
-    </div>
-
-{% else %}
-
-{% for comment in talk.comments %}
-    <div id="comment-{{ comment.id }}" class="row row-talk-comment">
-        <div class="img">
-            <img class="rating rating-{{ comment.rating }}" src="/inc/img/rating-{{ comment.rating }}.gif" alt="Rating: {{ comment.rating }} of 5" height="21" width="117"><br>
-{% if comment.userid != 0 and comment.user.twitterUsername %}
-            <a href="http://twitter.com/{{ comment.user.twitterUsername }}"><img src="/inc/img/twitter_share_icon.gif" style="margin-top:10px" width="20"></a>
-{# @TODO: Gravatar plugin #}
-            <a href="/user/view/{{ comment.user.id }}"><img src="https://secure.gravatar.com/avatar/51b3e93a0e18a503c44f9e1a9a3fc495?d=mm&amp;s=45" height="45" align="right" style="margin:10px"></a>
-{% endif %}
-        </div>
-        <div class="text">
-            <p class="info">
-                <strong>12.Jun.2012 at 07:11</strong> by <strong>
-{% if comment.userid != 0 %}
-                <a href="/user/view/{{ comment.user.id }}">{{ comment.user.fullname }}</a>
-{% else %}
-                Anonymous
-{% endif %}
-                </strong>
-            </p>
-            <div class="desc">
-                <p>
-                    {{ comment.comment }}
-                </p>
-            </div>
-            <p class="admin"></p>
-        </div>
-        <div class="clear"></div>
-    </div>
-{% endfor %}
-
-{% endif %}
-</div>
-
-<p class="info">
-    Want to comment on this talk? <a href="/user/login">Log in</a> or <a href="/user/register">create a new account</a> or comment anonymously
-</p>
-
-<p>
-    <a name="comment_form" id="comment_form"></a>
-</p>
-
-<h3 id="comment-form">Write a comment</h3>
-<form action="{{ path('joindinTalkBundle_view_details', { id: talk.id } )}}#comment-form" method="post" class="form-talk">
-    <input type="hidden" name="hash" value="4a502e302245317652b3de2ea58173b1">
-    <div class="row">
-        <div class="ui-widget">
-            <div class="ui-state-error ui-corner-all">
-                <span class="ui-icon ui-icon-alert">&nbsp;</span>
-                <div class="msg">
-                    Please note: you are <b>not logged in</b> and will be posting anonymously!
-                </div>
-                <div class="clear"></div>
-            </div>
-        </div><input type="hidden" name="edit_comment" value=""> <label for="comment">Comment <span id="comment_as_user" style="display: none;">as <a href="/user/view/"></a></span> <span id="comment_anonymously">anonymously</span></label>
-        <textarea name="comment" cols="40" rows="10" id="comment"></textarea> <label class="checkbox"><input type="checkbox" name="private" value="1"> Mark as private?</label>
-        <div class="clear"></div>
-    </div>
-    <div class="row">
-        <label for="rating">Rating</label>
-        <div class="rating" style='display:none' id="ratingbar-norating">
-            You already rated this talk.
-        </div>
-        <div class="rating" id="ratingbar">
-            <input name="rating" value="1" type="radio" class="star"><input name="rating" value="2" type="radio" class="star"><input name="rating" value="3" type="radio" class="star"><input name="rating" value="4" type="radio" class="star"><input name="rating" value="5" type="radio" class="star">
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="row">
-        <label for="cinput">Spambot check</label> <span><input type="text" name="cinput" value="" id="cinput"> = <b>nine minus zero</b></span>
-        <div class="clear"></div>
-    </div>
-    <div class="row row-buttons">
-        <input type="submit" name="sub" value="Submit Comment" class="btn-big">
-    </div>
-</form>
-
-<form>
-    <input type="hidden" name="talk_id" id="talk_id" value="6685"> <input type="hidden" name="user_id" id="user_id" value="">
-</form>
-
+{% include "joindinTalkBundle:View:talk_comment_form.html.twig" %}
 
 {% endblock %}
 

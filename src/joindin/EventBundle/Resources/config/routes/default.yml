@@ -10,7 +10,7 @@ joindinEventBundle_all_events:
     pattern:  /all
     defaults: { _controller: joindinEventBundle:Default:all }
 
-joindinEventBundle_upcoming_past:
+joindinEventBundle_past_events:
     pattern:  /past
     defaults: { _controller: joindinEventBundle:Default:past }
 

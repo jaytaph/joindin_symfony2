@@ -115,6 +115,19 @@ class Talks
      */
     protected $speakers;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="joindin\defaultBundle\Entity\Lang", inversedBy="id")
+     * @ORM\JoinColumn(name="lang", referencedColumnName="id")
+     */
+    protected $language;
+
+
+    /**
+     * TODO: This is a nasty property. We use it to fetch the rating, but on the other hand, we also
+     * (ab)use it when fetching talks through our own hydrator which copies scalars into our entity. This
+     * is definately something we need to work out... */
+    public $rating;
+
 
     /**
      * Get id
@@ -419,5 +432,41 @@ class Talks
     public function getSpeakers()
     {
         return $this->speakers;
+    }
+
+    /**
+     * Set language
+     *
+     * @param joindin\defaultBundle\Entity\Lang $language
+     * @return Talks
+     */
+    public function setLanguage(\joindin\defaultBundle\Entity\Lang $language = null)
+    {
+        $this->language = $language;
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return joindin\defaultBundle\Entity\Lang 
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+
+    public function getRating() {
+        // Ratings should be an aggregate thingie.
+        // http://doctrine-orm.readthedocs.org/en/latest/cookbook/aggregate-fields.html
+        if ($this->rating == null) {
+            $this->rating = rand(1,5);
+        }
+        return $this->rating;
+    }
+
+    public function setRating($rating) {
+        $this->rating = $rating;
     }
 }

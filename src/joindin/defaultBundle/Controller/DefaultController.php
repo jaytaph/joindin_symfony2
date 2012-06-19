@@ -12,10 +12,10 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindinEventBundle:Events')->findHotEvents(5);
-        //$events = $em->getRepository('joindinEventBundle:Events')->findUpcomingevents(5);
-        //$events = $em->getRepository('joindinEventBundle:Events')->findPastEvents(5);
-        return $this->render('joindinEventBundle:Default:hot.html.twig', array('events' => $events));
+        $events = $em->getRepository('joindinEventBundle:Events')->findHotEvents(7);
+        $talks = $em->getRepository('joindinTalkBundle:Talks')->findRecentPopularTalks(7);
+
+        return $this->render('joindindefaultBundle:Default:index.html.twig', array('events' => $events, 'talks' => $talks));
     }
 
 }

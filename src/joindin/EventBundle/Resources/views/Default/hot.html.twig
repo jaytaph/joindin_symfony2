@@ -4,10 +4,18 @@
 
 {% block body %}
 <div class="box">
-<h2 class="h1 icon-event">Hot Events <a class="more" href="/event/hot">More &raquo;</a></h2>
+<h2 class="h1 icon-event">Hot Events</h2>
+
+<p class="filter">
+    <a href="{{ path("joindinEventBundle_all_events")}}">All</a> |
+    <a href="{{ path("joindinEventBundle_hot_events")}}">Hot</a> |
+    <a href="{{ path("joindinEventBundle_upcoming_events")}}">Upcoming</a> |
+    <a href="{{ path("joindinEventBundle_past_events")}}">Past</a> |
+    <a href="{{ path("joindinEventBundle_callforpapers_events")}}">Open CFP</a>
+</p>
 
 {% for event in events %}
-    {% include "joindinEventBundle:Default:event_row.html.twig" %}
+    {% include "joindinEventBundle:Default:event_row.html.twig" with { 'event' : event } %}
 {% else %}
     No events found.
 {% endfor %}
