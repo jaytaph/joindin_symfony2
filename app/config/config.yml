@@ -70,3 +70,4 @@ fos_rest:
 twig:
     globals:
         google_analytics_code: %google_analytics_code%
+        site_name: %site_name%
