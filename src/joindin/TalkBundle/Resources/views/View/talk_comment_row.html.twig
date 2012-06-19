@@ -1,0 +1,28 @@
+<div id="comment-{{ comment.id }}" class="row row-talk-comment">
+    <div class="img">
+        <img class="rating rating-{{ comment.rating }}" src="/inc/img/rating-{{ comment.rating }}.gif" alt="Rating: {{ comment.rating }} of 5" height="21" width="117"><br>
+{% if comment.userid != 0 and comment.user.twitterUsername %}
+        <a href="http://twitter.com/{{ comment.user.twitterUsername }}"><img src="/inc/img/twitter_share_icon.gif" style="margin-top:10px" width="20"></a>
+{# @TODO: Gravatar plugin #}
+        <a href="/user/view/{{ comment.user.id }}"><img src="https://secure.gravatar.com/avatar/51b3e93a0e18a503c44f9e1a9a3fc495?d=mm&amp;s=45" height="45" align="right" style="margin:10px"></a>
+{% endif %}
+    </div>
+    <div class="text">
+        <p class="info">
+            <strong>12.Jun.2012 at 07:11</strong> by <strong>
+{% if comment.userid != 0 %}
+            <a href="/user/view/{{ comment.user.id }}">{{ comment.user.fullname }}</a>
+{% else %}
+            Anonymous
+{% endif %}
+            </strong>
+        </p>
+        <div class="desc">
+            <p>
+                {{ comment.comment }}
+            </p>
+        </div>
+        <p class="admin"></p>
+    </div>
+    <div class="clear"></div>
+</div>

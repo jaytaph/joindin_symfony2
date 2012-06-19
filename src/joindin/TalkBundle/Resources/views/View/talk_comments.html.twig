@@ -1,0 +1,19 @@
+<div class="box">
+    <h2 id="comments">
+        Comments
+    </h2>
+
+{% for comment in talk.comments %}
+    {% include "joindinTalkBundle:View:talk_comment_row.html.twig" with {'comment' : comment } %}
+{% else %}
+    <div class="ui-widget">
+        <div class="ui-state-highlight ui-corner-all">
+           <span class="ui-icon ui-icon-info">&nbsp;</span>
+           <div class="msg">
+               No comments yet.        </div>
+           <div class="clear"></div>
+        </div>
+   </div>
+{% endfor %}
+
+</div>
