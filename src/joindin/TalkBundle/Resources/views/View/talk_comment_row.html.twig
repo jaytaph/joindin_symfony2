@@ -3,14 +3,14 @@
         <img class="rating rating-{{ comment.rating }}" src="/inc/img/rating-{{ comment.rating }}.gif" alt="Rating: {{ comment.rating }} of 5" height="21" width="117"><br>
 {% if comment.userid != 0 and comment.user.twitterUsername %}
         <a href="http://twitter.com/{{ comment.user.twitterUsername }}"><img src="/inc/img/twitter_share_icon.gif" style="margin-top:10px" width="20"></a>
-        <a href="/user/view/{{ comment.user.id }}"><img src="{{ gravatar(attendee.email, 45, "g", "default.png", true) }}" height="45" align="right" style="margin:10px"></a>
+        <a href="{{ path("joindinUserBundle_view_details", { id: comment.user.id }) }}"><img src="{{ gravatar(attendee.email, 45, "g", "default.png", true) }}" height="45" align="right" style="margin:10px"></a>
 {% endif %}
     </div>
     <div class="text">
         <p class="info">
             <strong>12.Jun.2012 at 07:11</strong> by <strong>
 {% if comment.userid != 0 %}
-            <a href="/user/view/{{ comment.user.id }}">{{ comment.user.fullname }}</a>
+            <a href="{{ path("joindinUserBundle_view_details", { id: comment.user.id }) }}">{{ comment.user.fullname }}</a>
 {% else %}
             Anonymous
 {% endif %}

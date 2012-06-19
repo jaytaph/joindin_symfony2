@@ -16,7 +16,7 @@
     <p class="info">
         {% for speaker in talk.speakers %}
         {% if speaker.speakerID != null %}
-            <strong><a href="/user/view/{{speaker.user.id}}">{{ speaker.user.fullname }}</a></strong>
+            <strong><a href="{{ path("joindinUserBundle_view_details", { id: speaker.user.id }) }}">{{ speaker.user.fullname }}</a></strong>
         {% else %}
             <strong>{{ speaker.speakerName }}</strong>
         {% endif %}
@@ -33,7 +33,7 @@
         <span align="left">
             {% for speaker in talk.speakers %}
                 {% if speaker.user != null %}
-                <a href="/user/view/{{ speaker.user.id }}"><img src="{{ gravatar(speaker.user.email, 50, "g") }}" align="left" border="0" style="margin-right:10px;" height="50" width="50"></a>
+                <a href="{{ path("joindinUserBundle_view_details", { id: speaker.user.id }) }}"><img src="{{ gravatar(speaker.user.email, 50, "g") }}" align="left" border="0" style="margin-right:10px;" height="50" width="50"></a>
                 {% endif %}
             {% endfor %}
         </span>

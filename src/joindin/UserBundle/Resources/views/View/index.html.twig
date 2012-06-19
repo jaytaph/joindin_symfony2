@@ -1,0 +1,76 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}User: {{ user.fullName}}{% endblock %}
+
+
+{% block body %}
+
+<h1>{{ user.fullname}}</h1>
+<img src="{{ gravatar(attendee.email, 80) }}" height="80" width="80" alt="">
+{% if user.twitterUsername %}
+      <a href="http://twitter.com/{{ user.twitterUsername }}"><img src="/inc/img/twitter_share_icon.gif" style="margin-top:10px" width="20"></a>
+{% endif %}
+
+<br/><br/>
+
+
+<div class="box">
+    <h2>Talks</h2>
+    <p class="filter">
+        <a href="{{ path("joindinUserBundle_view_details", { id: user.id }) }}">Date Presented</a> |
+        <a href="{{ path("joindinUserBundle_view_details", { id: user.id }) }}/lastcomment">Last Commented</a> |
+        <a href="{{ path("joindinUserBundle_view_details", { id: user.id }) }}/bycomment">By Comment</a> |
+        <a href="{{ path("joindinUserBundle_view_details", { id: user.id }) }}/byname">By Name</a>
+    </p>
+    {% for talk in user.talks %}
+        {% include "joindinTalkBundle:Default:talk_row.html.twig" with { 'talk' : talk } %}
+    {% else %}
+        <p>No talks so far</p>
+    {% endfor %}
+</div>
+
+<div class="box">
+    <h2>Comments</h2>
+
+    {% for comment in user.comments %}
+      {% include "joindinTalkBundle:View:talk_comment_row.html.twig" with { 'comment' : comment } %}
+    {% else %}
+        <p>No comments so far</p>
+    {% endfor %}
+</div>
+
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tr>
+        <td>
+            <div class="box">
+                <h2>Events They'll Be At</h2>
+
+                {% for event in user.eventsAttending %}
+                    <div class="row">
+                        <strong><a href="{{ path('joindinEventBundle_view_details', { id: event.id } )}}">{{ event.eventName }}</a></strong> {{ event.eventStart | date("d.M.Y") }}
+                        <div class="clear"></div>
+                    </div>
+                {% else %}
+                    <p>Not attending any upcoming events yet</p>
+                {% endfor %}
+
+            </div>
+        </td>
+        <td>
+            <div class="box">
+                <h2>Events They Were At</h2>
+
+                {% for event in user.eventsAttended %}
+                    <div class="row">
+                        <strong><a href="{{ path('joindinEventBundle_view_details', { id: event.id } )}}">{{ event.eventName }}</a></strong> {{ event.eventStart | date("d.M.Y") }}
+                        <div class="clear"></div>
+                    </div>
+                {% else %}
+                    <p>Not attended any events yet</p>
+                {% endfor %}
+            </div>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

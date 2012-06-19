@@ -8,7 +8,9 @@
             <a href="{{ path("joindinTalkBundle_view_details", { id: talk.id }) }}">{{ talk.talkTitle }}</a>
         </h3>
         <p class="opts">
-            at <a href="{{ path("joindinEventBundle_view_details", { id: talk.event.id }) }}">{{ talk.event.eventTitle }}</a> | <a href="{{ path("joindinTalkBundle_view_details", { id: talk.id }) }}#comments">{{ talk.comments | length }} comments</a> |
+            {{ talk.categories[0].catDesc }} at <a href="{{ path("joindinEventBundle_view_details", { id: talk.event.id }) }}">{{ talk.event.eventName }}</a> |
+            <a href="{{ path("joindinTalkBundle_view_details", { id: talk.id }) }}#comments">{{ talk.comments | length }} comments</a> |
+            ({{ talk.dateGiven | date("d.M.Y") }} at {{ talk.dateGiven | date("h:i") }})
         </p>
     </div>
     <div class="clear"></div>

@@ -12,8 +12,10 @@ Proof of concept for porting joind.in to Symfony2
 - Add FOSUserBundle
 - Add firewall / security
 - Add forms
-- Remove things like "<?php echo $this->config->item('site_name'); ?>" inside the templates
 - Some aggregate counts. For instance, from the event entity, we would like to know how many talks have slides. I
   think there are more performant ways of figuring this out instead of iterating over each talk.
+
+- When going to: /event/view/2/tracks, it should display the "tracks" page
+- Sort events when going to /user/view/8/lastcomment
 
 - All the rest I forgot

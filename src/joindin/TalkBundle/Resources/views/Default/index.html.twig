@@ -10,7 +10,7 @@
 
 <h2>Recent Popular Talks</h2><a name="pop_recent" id="pop_recent"></a>
 {% for talk in recent %}
-    {% include "joindinTalkBundle:Default:talk_row.html.twig" %}
+    {% include "joindinTalkBundle:Default:talk_row.html.twig" with { 'talk' : talk } %}
 {% else %}
     No talks found.
 {% endfor %}
@@ -23,7 +23,7 @@
 </p>
 <h2>Popular Talks (All Time)</h2><a name="pop_all" id="pop_all"></a>
 {% for talk in alltime %}
-    {% include "joindinTalkBundle:Default:talk_row.html.twig" %}
+    {% include "joindinTalkBundle:Default:talk_row.html.twig" with { 'talk' : talk } %}
 {% else %}
     No talks found.
 {% endfor %}

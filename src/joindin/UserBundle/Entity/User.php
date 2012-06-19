@@ -90,6 +90,15 @@ class User
      */
     protected $admins;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="joindin\TalkBundle\Entity\Talks")
+     * @ORM\JoinTable(name="user_attend",
+     *      joinColumns={@ORM\JoinColumn(name="uid", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="eid", referencedColumnName="id")}
+     *      )
+     */
+    protected $talks;
+
 
     // protected $events_attended;
 
@@ -309,5 +318,27 @@ class User
     public function getAdmins()
     {
         return $this->admins;
+    }
+
+    /**
+     * Add talks
+     *
+     * @param joindin\TalkBundle\Entity\Talks $talks
+     * @return User
+     */
+    public function addTalks(\joindin\TalkBundle\Entity\Talks $talks)
+    {
+        $this->talks[] = $talks;
+        return $this;
+    }
+
+    /**
+     * Get talks
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getTalks()
+    {
+        return $this->talks;
     }
 }

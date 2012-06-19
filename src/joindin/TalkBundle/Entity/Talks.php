@@ -123,10 +123,9 @@ class Talks
 
 
     /**
-     * TODO: This is a nasty property. We use it to fetch the rating, but on the other hand, we also
-     * (ab)use it when fetching talks through our own hydrator which copies scalars into our entity. This
-     * is definately something we need to work out... */
-    public $rating;
+     * TODO: This is a nasty property. Need to figure out how to deal with this
+     */
+    protected $rating;
 
 
     /**
@@ -458,7 +457,11 @@ class Talks
 
 
     public function getRating() {
-        // Ratings should be an aggregate thingie.
+        if (isset($this->staticRating)) {
+            return $this->staticRating;
+        }
+
+        // @TODO: Ratings should be an aggregate thingie.
         // http://doctrine-orm.readthedocs.org/en/latest/cookbook/aggregate-fields.html
         if ($this->rating == null) {
             $this->rating = rand(1,5);

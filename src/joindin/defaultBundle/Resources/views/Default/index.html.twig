@@ -19,7 +19,7 @@
 <h2 class="h1 icon-talk">Popular Talks</h2>
 
 {% for talk in talks %}
-    {% include "joindinTalkBundle:Default:talk_row.html.twig" %}
+    {% include "joindinTalkBundle:Default:talk_row.html.twig" with { 'talk' : talk } %}
 {% else %}
     No talks found.
 {% endfor %}

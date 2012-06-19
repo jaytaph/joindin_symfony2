@@ -46,7 +46,7 @@
         <table cellpadding="5" cellspacing="0" border="0">
         <tr>
             {% for admin in event.admins %}
-            <td style="padding-right:5px;font-size:11px"><a href="/user/view/{{ admin.user.id }}">{{ admin.user.fullname }}</a></td>
+            <td style="padding-right:5px;font-size:11px"><a href="{{ path("joindinUserBundle_view_details", { id: admin.user.id }) }}">{{ admin.user.fullname }}</a></td>
             {% endfor %}
         </tr>
         </table>
@@ -58,13 +58,13 @@
 
 <div id="event-tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active ui-state-focus"><a href="/event/view/{{event.id}}/talks#event-tabs" rel="talks">Talks ({{ event.talks | length }})</a></li>
-        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/comments#event-tabs" rel="comments">Comments ( {{ event.comments|length }})</a></li>
+        <li class="ui-state-default ui-corner-top ui-tabs-selected ui-state-active ui-state-focus"><a href="{{ path("joindinEventBundle_view_details", { id: event.id }) }}/talks#event-tabs" rel="talks">Talks ({{ event.talks | length }})</a></li>
+        <li class="ui-state-default ui-corner-top"><a href="{{ path("joindinEventBundle_view_details", { id: event.id }) }}#event-tabs" rel="comments">Comments ( {{ event.comments|length }})</a></li>
 {% if event.talkswithslides|length > 0 %}
-        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/slides#event-tabs" rel="slides">Slides ({{ event.talkswithslides|length }})</a></li>
+        <li class="ui-state-default ui-corner-top"><a href="{{ path("joindinEventBundle_view_details", { id: event.id }) }}#event-tabs" rel="slides">Slides ({{ event.talkswithslides|length }})</a></li>
 {% endif %}
 {% if event.tracks|length > 0 %}
-        <li class="ui-state-default ui-corner-top"><a href="/event/view/{{event.id}}/tracks#event-tabs" rel="tracks">Tracks ({{ event.tracks|length }})</a></li>
+        <li class="ui-state-default ui-corner-top"><a href="{{ path("joindinEventBundle_view_details", { id: event.id }) }}/tracks#event-tabs" rel="tracks">Tracks ({{ event.tracks|length }})</a></li>
 {% endif %}
     </ul>
 
@@ -89,7 +89,7 @@
                     <td>
 {% for speaker in talk.speakers %}
                         {% if speaker.user %}
-                        <a href="/user/view/{{ speaker.user.id }}">{{speaker.user.fullname is empty ? speaker.user.username : speaker.user.fullname}}</a>
+                        <a href="{{ path("joindinUserBundle_view_details", { id: speaker.user.id }) }}">{{speaker.user.fullname is empty ? speaker.user.username : speaker.user.fullname}}</a>
                         {% else %}
                         {{ speaker.speakername }}
                         {% endif %}
@@ -137,7 +137,7 @@
 {% if comment.user == null %}
                                 <strong><span class="anonymous">Anonymous</span></strong>
 {% else %}
-                                <strong><a href="/user/view/18840">{{ comment.user.username }}</a></strong>
+                                <strong><a href="{{ path("joindinUserBundle_view_details", { id: comment.user.id }) }}">{{ comment.user.username }}</a></strong>
 {% endif %}
                                 (Feedback)
                             </p>
@@ -240,7 +240,7 @@
                 <tr class="row{{ loop.index }}">
                     <td>
                         {% if (track.talks|length > 0) %}
-                        <a href="/event/view/{{event.id}}/track/{{ track.id }}">{{ track.trackName }}</a>
+                        <a href="{{ path("joindinTalkBundle_view_details", { id: event.id }) }}/track/{{ track.id }}">{{ track.trackName }}</a>
                         {% else %}
                         {{ track.trackName }}
                         {% endif %}

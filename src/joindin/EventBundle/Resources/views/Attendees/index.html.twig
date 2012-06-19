@@ -14,7 +14,7 @@
 <ul>
 {% for user in event.attendees %}
     <li>
-        <a href="/user/view/{{ user.id}}">{{ user.fullname ? user.fullname : user.username}}</a>
+        <a href="{{ path("joindinUserBundle_view_details", { id: user.id }) }}">{{ user.fullname ? user.fullname : user.username}}</a>
         {% if event.isSpeaker(user) %}
         <span style="font-size:10px;font-weight:bold;color:#ED9D1E">speaker</span>
         {% endif %}

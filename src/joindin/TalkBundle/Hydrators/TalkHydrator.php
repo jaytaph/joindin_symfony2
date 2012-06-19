@@ -10,16 +10,16 @@ class TalkHydrator extends ObjectHydrator
     {
         parent::hydrateRowData($row, $cache, $result);
 
-
-        foreach ($result as $itemkey => $item) {
+        foreach ($result as $item_key => $item) {
             if (! is_array($item)) continue;
 
             $entity = array_shift($item);
 
             foreach ($item as $k => $v) {
-                $entity->$k = $v;
+                $s = "static".ucfirst(strtolower($k));
+                $entity->{$s} = $v;
             }
-            $result[$itemkey] = $entity;
+            $result[$item_key] = $entity;
         }
 
     }

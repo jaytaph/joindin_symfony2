@@ -17,6 +17,11 @@ joindinBlogBundle:
     resource: "@joindinBlogBundle/Resources/config/routing.yml"
     prefix:   /blog
 
+# User specific pages
+joindinUserBundle:
+    resource: "@joindinUserBundle/Resources/config/routing.yml"
+    prefix:   /user
+
 # Static pages and homepage
 joindindefaultBundle:
     resource: "@joindindefaultBundle/Resources/config/routing.yml"

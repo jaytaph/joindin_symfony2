@@ -1,0 +1,5 @@
+joindinUserBundle_view_details:
+    pattern:  /view/{id}/{sort}
+    defaults: { _controller: joindinUserBundle:View:index, sort : "presented" }
+    requirements:
+        id:  \d+
