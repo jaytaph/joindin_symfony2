@@ -8,8 +8,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class DefaultController extends Controller
 {
     
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('joindinTalkBundle:Default:index.html.twig', array('name' => $name));
+        $em = $this->getDoctrine()->getEntityManager();
+        $repository = $em->getRepository('joindinTalkBundle:Talks');
+
+        return $this->render('joindinTalkBundle:Default:index.html.twig', array("recent" => $repository->findRecentPopularTalks(),
+                                                                                "alltime" => $repository->findAllTimePopularTalks()));
     }
 }

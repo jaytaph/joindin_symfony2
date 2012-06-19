@@ -1,0 +1,16 @@
+<!-- Talk row start -->
+<div class="row row-talk">
+    <div class="img">
+        <img class="rating rating-{{ talk.rating }}" src="/inc/img/rating-{{ talk.rating }}.gif" alt="Rating: {{ talk.rating }} of 5" height="21" width="117">
+    </div>
+    <div class="text">
+        <h3>
+            <a href="{{ path("joindinTalkBundle_view_details", { id: talk.id }) }}">{{ talk.talkTitle }}</a>
+        </h3>
+        <p class="opts">
+            at <a href="{{ path("joindinEventBundle_view_details", { id: talk.event.id }) }}">{{ talk.event.eventTitle }}</a> | <a href="{{ path("joindinTalkBundle_view_details", { id: talk.id }) }}#comments">{{ talk.comments | length }} comments</a> |
+        </p>
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- Talk row end -->

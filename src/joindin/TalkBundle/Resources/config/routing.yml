@@ -1,3 +1,7 @@
 joindinTalkBundle_views:
     resource: "@joindinTalkBundle/Resources/config/routes/view.yml"
     prefix:   /
+
+joindinTalkBundle_main:
+    pattern:  /
+    defaults: { _controller: joindinTalkBundle:Default:index }
