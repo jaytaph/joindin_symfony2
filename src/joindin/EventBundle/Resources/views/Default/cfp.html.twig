@@ -14,11 +14,19 @@
     <a href="{{ path("joindinEventBundle_callforpapers_events")}}">Open CFP</a>
 </p>
 
-{% for event in events %}
+    <div class="navigation" align="center">
+        {{ pagination.render()|raw }}
+    </div>
+
+{% for event in pagination %}
     {% include "joindinEventBundle:Default:event_row.html.twig" with { 'event' : event } %}
 {% else %}
     No events with open call for papers are found.
 {% endfor %}
+
+    <div class="navigation" align="center">
+        {{ pagination.render()|raw }}
+    </div>
 
 </div>
 

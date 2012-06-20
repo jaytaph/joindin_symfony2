@@ -19,6 +19,8 @@ $loader->registerNamespaces(array(
     'FOS\\Rest'        => __DIR__.'/../vendor/fos',
     'FOS'              => __DIR__.'/../vendor/bundles',
     'Ornicar'          => __DIR__.'/../vendor/bundles',
+    'Knp\\Component'   => __DIR__.'/../vendor/knp-components/src',
+    'Knp\\Bundle'      => __DIR__.'/../vendor/bundles',
 ));
 $loader->registerPrefixes(array(
     'Twig_Extensions_' => __DIR__.'/../vendor/twig-extensions/lib',

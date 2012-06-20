@@ -17,43 +17,63 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindinEventBundle:Events')->findHotEvents(5);
+        $events = $em->getRepository('joindinEventBundle:Events')->findHotEvents(null);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($events, $this->get('request')->query->get('page', 1), 5);
+
         $cfp = $em->getRepository('joindinEventBundle:Events')->findOpenCfPEvents(5);
-        return $this->render('joindinEventBundle:Default:hot.html.twig', array('events' => $events, 'cfp' => $cfp));
+        return $this->render('joindinEventBundle:Default:hot.html.twig', array('pagination' => $pagination, 'cfp' => $cfp));
     }
 
     public function upcomingAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindinEventBundle:Events')->findUpcomingEvents(5);
+        $events = $em->getRepository('joindinEventBundle:Events')->findUpcomingEvents(null);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($events, $this->get('request')->query->get('page', 1), 5);
+
         $cfp = $em->getRepository('joindinEventBundle:Events')->findOpenCfPEvents(5);
-        return $this->render('joindinEventBundle:Default:upcoming.html.twig', array('events' => $events, 'cfp' => $cfp));
+        return $this->render('joindinEventBundle:Default:upcoming.html.twig', array('pagination' => $pagination, 'cfp' => $cfp));
     }
 
     public function pastAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindinEventBundle:Events')->findUpcomingEvents(5);
+        $events = $em->getRepository('joindinEventBundle:Events')->findUpcomingEvents(null);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($events, $this->get('request')->query->get('page', 1), 5);
+
         $cfp = $em->getRepository('joindinEventBundle:Events')->findOpenCfPEvents(5);
-        return $this->render('joindinEventBundle:Default:past.html.twig', array('events' => $events, 'cfp' => $cfp));
+        return $this->render('joindinEventBundle:Default:past.html.twig', array('pagination' => $pagination, 'cfp' => $cfp));
     }
 
     public function allAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindinEventBundle:Events')->findAllEvents(5);
+        $events = $em->getRepository('joindinEventBundle:Events')->findAllEvents(null);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($events, $this->get('request')->query->get('page', 1), 5);
+
         $cfp = $em->getRepository('joindinEventBundle:Events')->findOpenCfPEvents(5);
-        return $this->render('joindinEventBundle:Default:all.html.twig', array('events' => $events, 'cfp' => $cfp));
+        return $this->render('joindinEventBundle:Default:all.html.twig', array('pagination' => $pagination, 'cfp' => $cfp));
     }
 
     public function callforpapersAction()
     {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $events = $em->getRepository('joindinEventBundle:Events')->findOpenCfPEvents(5);
-        return $this->render('joindinEventBundle:Default:cfp.html.twig', array('events' => $events));
+        $events = $em->getRepository('joindinEventBundle:Events')->findOpenCfPEvents(null);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate($events, $this->get('request')->query->get('page', 1), 5);
+
+        return $this->render('joindinEventBundle:Default:cfp.html.twig', array('pagination' => $pagination));
     }
 }
