@@ -2,9 +2,9 @@
 
 namespace joindin\EventBundle\Repository;
 
+use Doctrine\ORM\Mapping;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\Expr;
-use Doctrine\ORM\Query;
 
 /**
 * EventsRepository
@@ -13,6 +13,12 @@ use Doctrine\ORM\Query;
 class EventsRepository extends EntityRepository
 {
 
+    public function __construct($em, Mapping\ClassMetadata $class)
+    {
+        parent::__construct($em, $class);
+        $this->getEntityManager()->getConfiguration()->addCustomHydrationMode('ScalarObjectHydrator', 'joindin\defaultBundle\Hydrators\ScalarObjectHydrator');
+    }
+
     /**
      * Finds the hottest events based on a (simple) calculation
      *
@@ -20,41 +26,65 @@ class EventsRepository extends EntityRepository
      * @return array
      */
     function findHotEvents($limit = 10) {
-        /**
-         * @TODO: This is the query.. the biggest issue is the order by score stuff...
-         *
-         * SELECT
-         *      *,
-         *      (select if (event_cfp_start IS NOT NULL AND event_cfp_start > 0 AND 1339887600 BETWEEN event_cfp_start AND event_cfp_end, 1, 0)) as is_cfp,
-         *      (select count(*) from user_attend where user_attend.eid = events.ID) as num_attend,
-         *      (select count(*) from event_comments where event_comments.event_id = events.ID) as num_comments,
-         *      abs(0) as user_attending,
-         *      abs(datediff(from_unixtime(events.event_start), from_unixtime(1339887600))) as score,
-         *      CASE WHEN (((events.event_start - 86400) < 1339887600) and (events.event_start + (3*30*3600*24)) > 1339887600) THEN 1 ELSE 0 END as allow_comments
-         *  FROM `events`
-         *  WHERE
-         *      active = 1
-         *      AND (pending = 0 OR pending IS NULL)
-         *      AND private!='Y'
-         *  ORDER BY
-         *      score - ((num_comments + num_attend + 1) / 5)
-         *  LIMIT 7
-         */
+        $rsm = new ResultSetMapping();
+        $rsm->addEntityResult('joindin\EventBundle\Entity\Events', 'e');
+        $rsm->addFieldResult('e', 'id', 'id');
+        $rsm->addFieldResult('e', 'event_name', 'eventName');
+        $rsm->addFieldResult('e', 'event_start', 'eventStart');
+        $rsm->addFieldResult('e', 'event_end', 'eventEnd');
+        $rsm->addFieldResult('e', 'event_lat', 'eventLat');
+        $rsm->addFieldResult('e', 'event_long', 'eventLong');
+        $rsm->addFieldResult('e', 'event_desc', 'eventDesc');
+        $rsm->addFieldResult('e', 'active', 'active');
+        $rsm->addFieldResult('e', 'event_stub', 'eventStub');
+        $rsm->addFieldResult('e', 'event_icon', 'eventIcon');
+        $rsm->addFieldResult('e', 'pending', 'pending');
+        $rsm->addFieldResult('e', 'event_hashtag', 'eventHashtag');
+        $rsm->addFieldResult('e', 'event_href', 'eventHref');
+        $rsm->addFieldResult('e', 'event_cfp_start', 'eventCfpStart');
+        $rsm->addFieldResult('e', 'event_cfp_end', 'eventCfpEnd');
+        $rsm->addFieldResult('e', 'event_voting', 'eventVoting');
+        $rsm->addFieldResult('e', 'private', 'private');
+        $rsm->addFieldResult('e', 'event_tz_cont', 'eventTzCont');
+        $rsm->addFieldResult('e', 'event_tz_place', 'eventTzPlace');
+        $rsm->addFieldResult('e', 'event_contact_name', 'eventContactName');
+        $rsm->addFieldResult('e', 'event_contact_email', 'eventContactEmail');
+        $rsm->addFieldResult('e', 'event_cfp_url', 'eventCfpUrl');
 
-        // Add RAND() as a custom DQL function
-        //$config = $this->getEntityManager()->getConfiguration();
-        //$config->addCustomNumericFunction('RAND', 'DoctrineExtensions\Query\Mysql\Rand');
+        $rsm->addScalarResult('is_cfp', 'cfp');
+        $rsm->addScalarResult('score', 'score');
+        $rsm->addScalarResult('allow_comments', 'allowComments');
 
-        // Add a HIDDEN field, so we can sort on it (needs doctrine 2.2+)
-        // score - ((num_comments + num_attend + 1) / 5)
-        // $qb->addSelect('RAND() AS HIDDEN hotness_factor');
-        // $qb->orderBy('(e.score - ((e.num_comments + e.num_attends + 1) / 5)', 'DESC');
-        //$qb->orderBy("RAND()");
 
-        $qb = $this->getEntityManager()->createQueryBuilder();
-        $qb->setMaxResults($limit);
+        $sql = "SELECT
+                        *,
+                        (select if (event_cfp_start IS NOT NULL AND event_cfp_start > 0 AND 1339887600 BETWEEN event_cfp_start AND event_cfp_end, 1, 0)) as is_cfp,
+                        (select count(*) from user_attend where user_attend.eid = events.ID) as num_attend,
+                        (select count(*) from event_comments where event_comments.event_id = events.ID) as num_comments,
+                        abs(0) as user_attending,
+                        abs(datediff(from_unixtime(events.event_start), from_unixtime(1339887600))) as score,
+                        CASE WHEN (((events.event_start - 86400) < 1339887600) and (events.event_start + (3*30*3600*24)) > 1339887600) THEN 1 ELSE 0 END as allow_comments
+                    FROM `events`
+                    WHERE
+                        active = 1
+                        AND (pending = 0 OR pending IS NULL)
+                        AND private!='Y'
+                    ORDER BY
+                        score - ((num_comments + num_attend + 1) / 5)";
 
-        return $this->_getEvents($qb);
+        $em = $this->getEntityManager();
+
+
+        if ($limit) {
+            // Add limit if needed
+            $sql .= " LIMIT :limit";
+            $query = $em->createNativeQuery($sql, $rsm);
+            $query->setParameter("limit", $limit);
+        } else {
+            $query = $em->createNativeQuery($sql, $rsm);
+        }
+
+        return $query->getResult('ScalarObjectHydrator');
     }
 
     /**

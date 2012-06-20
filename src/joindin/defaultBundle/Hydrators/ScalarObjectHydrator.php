@@ -1,10 +1,10 @@
 <?php
 
-namespace joindin\TalkBundle\Hydrators;
+namespace joindin\defaultBundle\Hydrators;
 
 use Doctrine\ORM\Internal\Hydration\ObjectHydrator;
 
-class TalkHydrator extends ObjectHydrator
+class ScalarObjectHydrator extends ObjectHydrator
 {
     protected function hydrateRowData(array $row, array &$cache, array &$result)
     {

@@ -14,11 +14,11 @@ use Doctrine\ORM\Query;
 */
 class TalkRepository extends EntityRepository
 {
+
     public function __construct($em, Mapping\ClassMetadata $class)
     {
         parent::__construct($em, $class);
-
-        $this->getEntityManager()->getConfiguration()->addCustomHydrationMode('TalkHydrator', 'joindin\TalkBundle\Hydrators\TalkHydrator');
+        $this->getEntityManager()->getConfiguration()->addCustomHydrationMode('ScalarObjectHydrator', 'joindin\defaultBundle\Hydrators\ScalarObjectHydrator');
     }
 
     protected function _createResultSetMapping() {
@@ -74,7 +74,7 @@ class TalkRepository extends EntityRepository
         $query->setParameter("start", strtotime("-3 months"));
         $query->setParameter("limit", $limit);
 
-        return $query->getResult('TalkHydrator');
+        return $query->getResult('ScalarObjectHydrator');
     }
 
     function findAlltimePopularTalks($limit = 7) {
@@ -104,7 +104,7 @@ class TalkRepository extends EntityRepository
             LIMIT :limit", $rsm);
         $query->setParameter("limit", $limit);
 
-        return $query->getResult('TalkHydrator');
+        return $query->getResult('ScalarObjectHydrator');
     }
 
 }
