@@ -61,11 +61,14 @@ class User extends BaseUser
      */
     protected $events;
 
-
     /**
-     * @ORM\OneToMany(targetEntity="joindin\TalkBundle\Entity\Talks", mappedBy="user")
+     * @ORM\ManyToMany(targetEntity="joindin\TalkBundle\Entity\TalkSpeaker")
+     * @ORM\JoinTable(name="user_attend",
+     *      joinColumns={@ORM\JoinColumn(name="uid", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="eid", referencedColumnName="id")}
+     *      )
      */
-    protected $talks;
+    protected $speakers;
 
     public function __construct()
     {
@@ -236,5 +239,27 @@ class User extends BaseUser
     public function getTalks()
     {
         return $this->talks;
+    }
+
+    /**
+     * Add speakers
+     *
+     * @param joindin\TalkBundle\Entity\TalkSpeaker $speakers
+     * @return User
+     */
+    public function addTalkSpeaker(\joindin\TalkBundle\Entity\TalkSpeaker $speakers)
+    {
+        $this->speakers[] = $speakers;
+        return $this;
+    }
+
+    /**
+     * Get speakers
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getSpeakers()
+    {
+        return $this->speakers;
     }
 }

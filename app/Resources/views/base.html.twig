@@ -13,6 +13,7 @@
 
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
+    {# if we REALLY need to include something in the head, do it here#}
     {% block head_javascript %}{% endblock %}
     <script type="text/javascript" src="/inc/js/jquery.js"></script>
     <script type="text/javascript" src="/inc/js/jquery.pause.js"></script>
@@ -32,11 +33,11 @@
             <div class="usr">
                 <div class="wrapper">
 {% if app.user != null %}
-                    Logged in as <strong><a href="/user/view/2">tsoto</a></strong> |
+                    Logged in as <strong><a href="{{ path("joindinUserBundle_view_details", { id: app.user.id }) }}">{{ app.user.fullname }}</a></strong> |
                     <a href="/user/main">Account</a> |
-                    <a href="/user/logout">Logout</a>
+                    <a href="{{ path("fos_user_security_logout") }}">Logout</a>
 {% else %}
-                    <a href="/login">Login</a> or <a href="/register">Register</a>
+                    <a href="{{ path("fos_user_security_login") }}">Login</a> or <a href="{{ path("fos_user_registration_register") }}">Register</a>
 {% endif %}
                 </div>
                 <div class="clear"></div>
@@ -133,7 +134,6 @@
     <div id="jQueryUImessageBox" style="display:none"></div>
 
     {% include "::analytics.html.twig" %}
-
 
     {# Include all javascript #}
     {% block javascript %}{% endblock %}

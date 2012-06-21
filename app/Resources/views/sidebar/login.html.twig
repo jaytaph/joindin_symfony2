@@ -19,7 +19,7 @@
 
             <div class="row row-buttons">
                 <input type="submit" name="sub" value="Login" class="btn"  />
-                <a style="margin-left:10px" href="/user">Forgot your password?</a>
+                <a style="margin-left:10px" href="{{ path("fos_user_resetting_request") }}">Forgot your password?</a>
             </div>
         </form>
 
@@ -33,8 +33,8 @@
         </p>
 
         <p>
-            <small>Need an account? <a href="/user/register">Register now!</a></small><br/>
-            <small><a href="/user/forgot">Forgot Password</a></small>
+            <small>Need an account? <a href="{{ path("fos_user_registration_register") }}">Register now!</a></small><br/>
+            <small><a href="{{ path("fos_user_resetting_request") }}">Forgot Password</a></small>
         </p>
     </div>
 </div>

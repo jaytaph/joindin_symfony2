@@ -2,7 +2,7 @@
     <h4>Check out who's attending!</h4>
     <div class="ctn">
 {% for attendee in event.attendees %}
-        <a href="{{ path("joindinUserBundle_view_details", { id: attendee.id }) }}"><img src="{{ gravatar(attendee.email, 20, "g") }}" height="20" width="20" style="margin:2px" alt="{{ attendee.fullname }}" title="{{ attendee.fullname }}"/></a>
+        <a href="{{ path("joindinUserBundle_view_details", { id: attendee.  id }) }}"><img src="{{ gravatar(attendee.email, 20, "g") }}" height="20" width="20" style="margin:2px" alt="{{ attendee.fullname }}" title="{{ attendee.fullname }}"/></a>
 {% else %}
         Nobody is attending yet.
 {% endfor %}

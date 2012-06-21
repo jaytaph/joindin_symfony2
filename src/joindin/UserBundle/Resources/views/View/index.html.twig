@@ -22,8 +22,8 @@
         <a href="{{ path("joindinUserBundle_view_details", { id: user.id }) }}/bycomment">By Comment</a> |
         <a href="{{ path("joindinUserBundle_view_details", { id: user.id }) }}/byname">By Name</a>
     </p>
-    {% for talk in user.talks %}
-        {% include "joindinTalkBundle:Default:talk_row.html.twig" with { 'talk' : talk } %}
+    {% for speaker in user.speakers %}
+        {% include "joindinTalkBundle:Default:talk_row.html.twig" with { 'talk' : speaker.talk } %}
     {% else %}
         <p>No talks so far</p>
     {% endfor %}

@@ -1,0 +1,27 @@
+<div class="box">
+    <h4>Navigation</h4>
+    <div class="ctn">
+        <ul>
+            <li><a href="/user/main">Dashboard</a></li>
+            <li><a href="/user/manage">Manage Account</a></li>
+            <li><a href="/user/apikey">API Keys</a></li>
+            <li><b>My Activities:</b>
+                <ul>
+                    <li><a href="/user/main">My Talks</a></li>
+                    <li><a href="/user/main">My Sessions</a></li>
+                </ul>
+            </li>
+
+{% if is_granted('ROLE_SITE_ADMINISTRATOR') %}
+            <li><b>Admin Links</b>
+                <ul>
+                    <li><a href="/user/admin">User Admin</a></li>
+                    <li><a href="/event/pending">Pending Events</a> (1)</li>
+                    <li><a href="/talk/claim">Talk Claims</a></li>
+                    <li><a href="/event/claims">Event Claims</a> (24)</li>
+                </ul>
+            </li>
+{% endif %}
+        </ul>
+    </div>
+</div>
