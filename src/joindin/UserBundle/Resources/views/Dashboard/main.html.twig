@@ -1,0 +1,57 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}User dashboard{% endblock %}
+
+
+{% block body %}
+<div class="menu">
+    <ul>
+        <li class="active"><a href="{{ path("joindinUserBundle_dashboard_main") }}">Dashboard</a></li>
+        <li><a href="{{ path("joindinUserBundle_dashboard_manage") }}">Manage Account</a></li>
+{% if is_granted('ROLE_SITE_ADMINISTRATOR') %}
+        <li><a href="{{ path("joindinUserBundle_dashboard_admin") }}">User Admin</a></li>
+        <li><a href="/event/pending">Pending Events</a></li>
+{% endif %}
+    </ul>
+    <div class="clear"></div>
+</div>
+
+<img src="{{ gravatar(user.email, 80) }}" height="80" width="80" alt="">
+{% if user.twitterUsername %}
+      <a href="http://twitter.com/{{ user.twitterUsername }}"><img src="/inc/img/twitter_share_icon.gif" style="margin-top:10px" width="20"></a>
+{% endif %}
+
+
+<div class="box">
+    <h2>My Talks</h2>
+    {% for speaker in user.speakers|slice(1, 10) %}
+        {% include "joindinTalkBundle:Default:talk_row.html.twig" with { 'talk' : speaker.talk } %}
+    {% else %}
+        <p>No talks so far</p>
+    {% endfor %}
+
+    {% if user.speakers | length > 10 %}
+        <p><a href="{{ path("joindinUserBundle_view_details", { id: user.id }) }}">View all {{ user.speakers | length }} talks</a></p>
+    {% endif %}
+</div>
+
+<div class="box">
+    <h2>My Comments</h2>
+
+    {% for comment in user.comments|slice(1, 10) %}
+        <div class="row">
+            <strong><a href="/talk/view/3659#comment-13748">{{ comment.talk.talkTitle }}</a></strong>
+            <div class="clear"></div>
+        </div>
+    {% else %}
+        <p>No comments so far</p>
+    {% endfor %}
+
+    {% if user.speakers | length > 10 %}
+        <p><a href="#">View all {{ user.comments | length }} comments</a></p>
+    {% endif %}
+
+</div>
+
+
+{% endblock %}

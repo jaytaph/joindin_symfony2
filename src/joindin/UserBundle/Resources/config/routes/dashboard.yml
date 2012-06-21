@@ -1,0 +1,11 @@
+joindinUserBundle_dashboard_main:
+    pattern:  /main
+    defaults: { _controller: joindinUserBundle:Dashboard:main }
+
+joindinUserBundle_dashboard_manage:
+    pattern:  /manage
+    defaults: { _controller: joindinUserBundle:Dashboard:manage }
+
+joindinUserBundle_dashboard_admin:
+    pattern:  /admin
+    defaults: { _controller: joindinUserBundle:Dashboard:admin }

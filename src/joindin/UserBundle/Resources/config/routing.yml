@@ -1,3 +1,7 @@
 joindinUserBundle_views:
     resource: "@joindinUserBundle/Resources/config/routes/view.yml"
     prefix:   /
+
+joindinUserBundle_dashboard:
+    resource: "@joindinUserBundle/Resources/config/routes/dashboard.yml"
+    prefix:   /
