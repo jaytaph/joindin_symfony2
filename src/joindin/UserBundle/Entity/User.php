@@ -2,6 +2,7 @@
 
 namespace joindin\UserBundle\Entity;
 
+use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer $id
@@ -19,70 +20,35 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
-
-    /**
-     * @var string $username
-     *
-     * @ORM\Column(name="username", type="string", length=100, nullable=true)
-     */
-    private $username;
-
-    /**
-     * @var string $password
-     *
-     * @ORM\Column(name="password", type="string", length=32, nullable=true)
-     */
-    private $password;
-
-    /**
-     * @var string $email
-     *
-     * @ORM\Column(name="email", type="string", length=200, nullable=true)
-     */
-    private $email;
-
-    /**
-     * @var integer $lastLogin
-     *
-     * @ORM\Column(name="last_login", type="integer", nullable=true)
-     */
-    private $lastLogin;
-
-    /**
-     * @var integer $admin
-     *
-     * @ORM\Column(name="admin", type="integer", nullable=true)
-     */
-    private $admin;
+    protected $id;
 
     /**
      * @var string $fullName
      *
      * @ORM\Column(name="full_name", type="string", length=200, nullable=true)
      */
-    private $fullName;
+    protected $fullName;
 
     /**
      * @var integer $active
      *
      * @ORM\Column(name="active", type="integer", nullable=true)
      */
-    private $active;
+    protected $active;
 
     /**
      * @var string $twitterUsername
      *
      * @ORM\Column(name="twitter_username", type="string", length=20, nullable=true)
      */
-    private $twitterUsername;
+    protected $twitterUsername;
 
     /**
      * @var string $requestCode
      *
      * @ORM\Column(name="request_code", type="string", length=8, nullable=true)
      */
-    private $requestCode;
+    protected $requestCode;
 
 
     /**
@@ -91,19 +57,23 @@ class User
     protected $admins;
 
     /**
-     * @ORM\ManyToMany(targetEntity="joindin\TalkBundle\Entity\Talks")
-     * @ORM\JoinTable(name="user_attend",
-     *      joinColumns={@ORM\JoinColumn(name="uid", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="eid", referencedColumnName="id")}
-     *      )
+     * @ORM\ManyToMany(targetEntity="joindin\EventBundle\Entity\Events", mappedBy="attendees")
+     */
+    protected $events;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="joindin\TalkBundle\Entity\Talks", mappedBy="user")
      */
     protected $talks;
 
-
-    // protected $events_attended;
-
-
-
+    public function __construct()
+    {
+        $this->admins = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->events = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->talks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
     /**
      * Get id
      *
@@ -115,113 +85,15 @@ class User
     }
 
     /**
-     * Set username
-     *
-     * @param string $username
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string 
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string 
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set lastLogin
-     *
-     * @param integer $lastLogin
-     */
-    public function setLastLogin($lastLogin)
-    {
-        $this->lastLogin = $lastLogin;
-    }
-
-    /**
-     * Get lastLogin
-     *
-     * @return integer 
-     */
-    public function getLastLogin()
-    {
-        return $this->lastLogin;
-    }
-
-    /**
-     * Set admin
-     *
-     * @param integer $admin
-     */
-    public function setAdmin($admin)
-    {
-        $this->admin = $admin;
-    }
-
-    /**
-     * Get admin
-     *
-     * @return integer 
-     */
-    public function getAdmin()
-    {
-        return $this->admin;
-    }
-
-    /**
      * Set fullName
      *
      * @param string $fullName
+     * @return User
      */
     public function setFullName($fullName)
     {
         $this->fullName = $fullName;
+        return $this;
     }
 
     /**
@@ -238,10 +110,12 @@ class User
      * Set active
      *
      * @param integer $active
+     * @return User
      */
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
     }
 
     /**
@@ -258,10 +132,12 @@ class User
      * Set twitterUsername
      *
      * @param string $twitterUsername
+     * @return User
      */
     public function setTwitterUsername($twitterUsername)
     {
         $this->twitterUsername = $twitterUsername;
+        return $this;
     }
 
     /**
@@ -278,10 +154,12 @@ class User
      * Set requestCode
      *
      * @param string $requestCode
+     * @return User
      */
     public function setRequestCode($requestCode)
     {
         $this->requestCode = $requestCode;
+        return $this;
     }
 
     /**
@@ -293,11 +171,7 @@ class User
     {
         return $this->requestCode;
     }
-    public function __construct()
-    {
-        $this->admins = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+
     /**
      * Add admins
      *
@@ -318,6 +192,28 @@ class User
     public function getAdmins()
     {
         return $this->admins;
+    }
+
+    /**
+     * Add events
+     *
+     * @param joindin\EventBundle\Entity\Events $events
+     * @return User
+     */
+    public function addEvents(\joindin\EventBundle\Entity\Events $events)
+    {
+        $this->events[] = $events;
+        return $this;
+    }
+
+    /**
+     * Get events
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getEvents()
+    {
+        return $this->events;
     }
 
     /**

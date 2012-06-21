@@ -4,7 +4,7 @@
 
 {% block sidebar %}
     {{ parent() }}
-    {% include "joindinEventBundle:View:sidebar/whos_attending.html.twig" with {'event' : talk.event } %}
+    {% include "joindinEventBundle:View:sidebar/whos_attending.html.twig" with {'event' : event } %}
 {% endblock %}
 
 {% block body %}

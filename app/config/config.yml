@@ -87,3 +87,8 @@ knp_paginator:
     template:
         pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: joindin\UserBundle\Entity\User
