@@ -55,3 +55,11 @@
      {% endif %}
  {% endspaceless %}
  {% endblock time_widget %}
+
+{% block captcha_widget %}
+{% spaceless %}
+    <img src="{{ captcha_code }}" title="captcha" width="{{ captcha_width }}" height="{{ captcha_height }}" align=right />
+    {{ form_widget(form) }}
+    <small><i>Please validate our captcha in order to combat spam</i></small>
+{% endspaceless %}
+{% endblock %}

@@ -50,6 +50,10 @@ class Event extends AbstractType
                         'required' => false,
                         'attr' => array('class' => 'checkbox'),
                         'label' => 'Is this event private?'));
+
+        // @TODO: Can we remove our captcha after a successful event?
+        $builder
+                ->add('captcha', 'captcha');
     }
 
     public function getDefaultOptions(array $options)

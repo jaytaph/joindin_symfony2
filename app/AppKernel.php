@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
             new joindin\defaultBundle\joindindefaultBundle(),
             new joindin\BlogBundle\joindinBlogBundle(),
             new joindin\EventBundle\joindinEventBundle(),
