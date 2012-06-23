@@ -2,23 +2,29 @@
     <h4>Sign in</h4>
     <div class="ctn">
 
-        <form action="https://joind.in/user/login" method="post" class="form-login">
-            <input type="hidden" name="hash" value="6e79c228be2027475323c157be7df0c3">
+        <form action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{% render('joindinUserBundle:default:getToken') %}" />
 
             <div class="row">
-                <label for="sidebar_user">Username</label>
-                <input type="text" name="user" value="" id="sidebar_user"  />
+                <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+                <input type="text" id="username" name="_username" value="" />
                 <div class="clear"></div>
             </div>
 
             <div class="row">
-                <label for="sidebar_pass">Password</label>
-                <input type="password" name="pass" value="" id="sidebar_pass"  />
+                <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+                <input type="password" id="password" name="_password" />
+                <div class="clear"></div>
+            </div>
+
+            <div class="row">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label style="display:inline !important;" for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
                 <div class="clear"></div>
             </div>
 
             <div class="row row-buttons">
-                <input type="submit" name="sub" value="Login" class="btn"  />
+                <input class="btn" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
                 <a style="margin-left:10px" href="{{ path("fos_user_resetting_request") }}">Forgot your password?</a>
             </div>
         </form>

@@ -8,6 +8,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 class DashboardController extends Controller
 {
 
+    /**
+     * Returns the main dashboard page
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function mainAction()
     {
         $user = $this->get('security.context')->getToken()->getUser();
