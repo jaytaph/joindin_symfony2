@@ -1,0 +1,13 @@
+
+{% block generic_label %}
+{% spaceless %}
+    {% if required %}
+        {% set attr = attr|merge({'class': attr.class|default('') ~ ' required'}) %}
+    {% endif %}
+    <label{% for attrname,attrvalue in attr %} {{attrname}}="{{attrvalue}}"{% endfor %}>{{ label|trans }}
+    {% if required %}
+        <span class="required" title="This field is required">*</span>
+    {% endif %}
+    </label>
+{% endspaceless %}
+{% endblock %}

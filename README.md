@@ -20,4 +20,6 @@ Proof of concept for porting joind.in to Symfony2
 - Add rememberme option
 - site.js does create some hrefs with fixed url's (/user/view/'+obj etc), see if we can change that
 
+- OSM type should be custom bundle or something?
+
 - All the rest I forgot

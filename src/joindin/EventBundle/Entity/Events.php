@@ -142,18 +142,9 @@ class Events
     private $private;
 
     /**
-     * @var string $eventTzCont
-     *
-     * @ORM\Column(name="event_tz_cont", type="string", length=30, nullable=true)
+     * @ORM\Column(name="event_tz", type="string", length=100)
      */
-    private $eventTzCont;
-
-    /**
-     * @var string $eventTzPlace
-     *
-     * @ORM\Column(name="event_tz_place", type="string", length=70, nullable=true)
-     */
-    private $eventTzPlace;
+    private $eventTz;
 
     /**
      * @var string $eventContactName
@@ -820,5 +811,27 @@ class Events
             }
         }
         return false;
+    }
+
+    /**
+     * Set eventTz
+     *
+     * @param integer $eventTz
+     * @return Events
+     */
+    public function setEventTz($eventTz)
+    {
+        $this->eventTz = $eventTz;
+        return $this;
+    }
+
+    /**
+     * Get eventTz
+     *
+     * @return integer 
+     */
+    public function getEventTz()
+    {
+        return $this->eventTz;
     }
 }

@@ -76,4 +76,9 @@ class DefaultController extends Controller
 
         return $this->render('joindinEventBundle:Default:cfp.html.twig', array('pagination' => $pagination));
     }
+
+
+    public function submitAction() {
+        return $this->render('joindinEventBundle:Default:submit.html.twig');
+    }
 }
