@@ -103,5 +103,8 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: joindin\UserBundle\Entity\User
+    registration:
+        form:
+            type: joindin_user_registration
 
 gregwar_captcha: ~

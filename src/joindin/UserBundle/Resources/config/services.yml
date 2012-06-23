@@ -2,6 +2,8 @@ parameters:
 #    joindin_user.example.class: joindin\UserBundle\Example
 
 services:
-#    joindin_user.example:
-#        class: %joindin_user.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    joindin_user.registration.form.type:
+        class: joindin\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: joindin_user_registration }

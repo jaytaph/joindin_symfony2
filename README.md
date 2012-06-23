@@ -21,5 +21,12 @@ Proof of concept for porting joind.in to Symfony2
 - site.js does create some hrefs with fixed url's (/user/view/'+obj etc), see if we can change that
 
 - OSM type should be custom bundle or something?
+- The sidebar should be done through a menu-type of system: https://github.com/KnpLabs/KnpMenuBundle/blob/master/Resources/doc/index.md
 
-- All the rest I forgot
+- register screen must be styled (forgot password as well)
+- fos user emails must be styled
+
+- twitter & facebook connectivity
+
+- v2.1 API implementation
+

@@ -5,6 +5,10 @@
 {% block sidebar %}
     {{ parent() }}
     {% include "joindinEventBundle:View:sidebar/whos_attending.html.twig" with {'event' : event } %}
+    {% if event.hasStarted %}
+        {% include "joindinEventBundle:View:sidebar/contact_event_admin.html.twig" with {'event' : event } %}
+        {% include "joindinEventBundle:View:sidebar/leave_event_comment.html.twig" with {'event' : event } %}
+    {% endif %}
 {% endblock %}
 
 {% block body %}
@@ -29,7 +33,16 @@
 
                 <p class="opts">
                     <a class="btn" id="mark-attending" href="javascript:void(0);" onclick="return markAttending(this,{{event.id}},true);">I attended</a>
-                    <span class="attending"><strong><span class="event-attend-count-{{ event.id }}">{{ event.attendees|length}}</span> people</strong>  said they attended. <a href="javascript:void(0);" id="toggle-attendees" class="show">Show &raquo;</a></span>
+                    <span class="attending"><strong><span class="event-attend-count-{{ event.id }}">{{ event.attendees|length}}</span> people</strong>
+{% if event.hasEnded %}
+    said they attended.
+{% elseif event.inProgress %}
+    say they are attending.
+{% else %}
+    say they will be attending.
+{% endif %}
+
+                    <a href="javascript:void(0);" id="toggle-attendees" class="show">Show &raquo;</a></span>
                 </p>
             </div>
             <div class="clear"></div>
@@ -55,6 +68,30 @@
 </div>
 
 <p class="admin"></p>
+
+{% if event.hasStarted %}
+<div class="detail">
+    <div class="desc">
+        <h2>Write a Comment for the Event</h2>
+        <div class="ctn">
+    {% if event.inProgress %}
+            <p>What did you like about this event, and what do you
+            think could be better for the next time? Leave your feedback
+            to help the organizers know what you liked, and what could be
+            improved on.</p>
+    {% else %}
+            <p>What are you liking about this event, and what do you
+            think could be better for the next time? Leave your feedback
+            to help the organizers know what you like, and what could be
+            improved on.</p>
+    {% endif %}
+            <p style="text-align:center">
+                <a href="#comment-form" onclick="eventOpenTab('comments'); $('#event_comment').focus(); return true;" class="btn-big">Give Event Feedback</a>
+            </p>
+        </div>
+    </div>
+</div>
+{% endif %}
 
 <div id="event-tabs" class="ui-tabs ui-widget ui-widget-content ui-corner-all">
     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">

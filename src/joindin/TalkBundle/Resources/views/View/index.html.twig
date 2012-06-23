@@ -5,6 +5,11 @@
 {% block sidebar %}
     {{ parent() }}
     {% include "joindinEventBundle:View:sidebar/whos_attending.html.twig" with {'event' : talk.event } %}
+{% if talk.event.hasStarted %}
+    {% include "joindinEventBundle:View:sidebar/contact_event_admin.html.twig" with {'event' : talk.event } %}
+    {% include "joindinEventBundle:View:sidebar/leave_event_comment.html.twig" with {'event' : talk.event } %}
+{% endif %}
+
 {% endblock %}
 
 {% block body %}
@@ -44,7 +49,7 @@
     <p class="quicklink">
         Quicklink: <strong><a href="{{ url("event_quicklink", {id : talk.event.id }) }}">{{ url("event_quicklink", {id : talk.event.id }) }}</a></strong>
     </p>
-{% if event.tracks|length > 0 %}
+{% if talk.event.tracks|length > 0 %}
     <p class="quicklink">
         <b>Track(s):</b>
         {% for track in talk.tracks %}

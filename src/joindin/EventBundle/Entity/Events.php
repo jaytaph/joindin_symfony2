@@ -834,4 +834,38 @@ class Events
     {
         return $this->eventTz;
     }
+
+    /**
+     * Returns true when the event is in progress (started and not ended)
+     *
+     * @return bool
+     */
+    public function inProgress() {
+        $now = new \DateTime("now", new \DateTimeZone($this->eventTz));
+        $start = new \DateTime("@".$this->eventStart, new \DateTimeZone($this->eventTz));
+        $end = new \DateTime("@".$this->eventEnd, new \DateTimeZone($this->eventTz));
+        return ($start <= $now && $now <= $end);
+    }
+
+    /**
+     * Returns true when the event has started (started)
+     *
+     * @return bool
+     */
+    public function hasStarted() {
+        $now = new \DateTime("now", new \DateTimeZone($this->eventTz));
+        $start = new \DateTime("@".$this->eventStart, new \DateTimeZone($this->eventTz));
+        return $start <= $now;
+    }
+
+    /**
+     * Returns true when the event has ended (ended)
+     *
+     * @return bool
+     */
+    public function hasEnded() {
+        $now = new \DateTime("now", new \DateTimeZone($this->eventTz));
+        $end = new \DateTime("@".$this->eventEnd, new \DateTimeZone($this->eventTz));
+        return $now >= $end;
+    }
 }
