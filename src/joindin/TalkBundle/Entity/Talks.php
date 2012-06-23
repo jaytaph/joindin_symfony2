@@ -84,10 +84,9 @@ class Talks
      */
     private $lang;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="joindin\EventBundle\Entity\Events", inversedBy="id")
-     */
-    protected $event;
+
+    // @TODO
+    private $rating;
 
     /**
      * @ORM\ManyToMany(targetEntity="joindin\EventBundle\Entity\EventTrack", inversedBy="id")
@@ -121,11 +120,36 @@ class Talks
      */
     protected $language;
 
-
     /**
-     * TODO: This is a nasty property. Need to figure out how to deal with this
+     * @ORM\ManyToOne(targetEntity="joindin\EventBundle\Entity\Events", inversedBy="id")
+     * @ORM\JoinColumn(name="eventId", referencedColumnName="id")
      */
-    protected $rating;
+    protected $event;
+
+
+    public function getRating() {
+        if (isset($this->staticRating)) {
+            return $this->staticRating;
+        }
+
+        // @TODO: Ratings should be an aggregate thingie.
+        // http://doctrine-orm.readthedocs.org/en/latest/cookbook/aggregate-fields.html
+        if ($this->rating == null) {
+            $this->rating = rand(1,5);
+        }
+        return $this->rating;
+    }
+
+    public function setRating($rating) {
+        $this->rating = $rating;
+    }
+    public function __construct()
+    {
+        $this->track = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->speakers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -142,10 +166,12 @@ class Talks
      * Set talkTitle
      *
      * @param text $talkTitle
+     * @return Talks
      */
     public function setTalkTitle($talkTitle)
     {
         $this->talkTitle = $talkTitle;
+        return $this;
     }
 
     /**
@@ -162,10 +188,12 @@ class Talks
      * Set speaker
      *
      * @param text $speaker
+     * @return Talks
      */
     public function setSpeaker($speaker)
     {
         $this->speaker = $speaker;
+        return $this;
     }
 
     /**
@@ -182,10 +210,12 @@ class Talks
      * Set slidesLink
      *
      * @param text $slidesLink
+     * @return Talks
      */
     public function setSlidesLink($slidesLink)
     {
         $this->slidesLink = $slidesLink;
+        return $this;
     }
 
     /**
@@ -202,10 +232,12 @@ class Talks
      * Set dateGiven
      *
      * @param integer $dateGiven
+     * @return Talks
      */
     public function setDateGiven($dateGiven)
     {
         $this->dateGiven = $dateGiven;
+        return $this;
     }
 
     /**
@@ -222,10 +254,12 @@ class Talks
      * Set eventId
      *
      * @param integer $eventId
+     * @return Talks
      */
     public function setEventId($eventId)
     {
         $this->eventId = $eventId;
+        return $this;
     }
 
     /**
@@ -242,10 +276,12 @@ class Talks
      * Set talkDesc
      *
      * @param text $talkDesc
+     * @return Talks
      */
     public function setTalkDesc($talkDesc)
     {
         $this->talkDesc = $talkDesc;
+        return $this;
     }
 
     /**
@@ -262,10 +298,12 @@ class Talks
      * Set active
      *
      * @param integer $active
+     * @return Talks
      */
     public function setActive($active)
     {
         $this->active = $active;
+        return $this;
     }
 
     /**
@@ -282,10 +320,12 @@ class Talks
      * Set ownerId
      *
      * @param integer $ownerId
+     * @return Talks
      */
     public function setOwnerId($ownerId)
     {
         $this->ownerId = $ownerId;
+        return $this;
     }
 
     /**
@@ -302,10 +342,12 @@ class Talks
      * Set lang
      *
      * @param integer $lang
+     * @return Talks
      */
     public function setLang($lang)
     {
         $this->lang = $lang;
+        return $this;
     }
 
     /**
@@ -319,32 +361,27 @@ class Talks
     }
 
     /**
-     * Set event
+     * Add track
      *
-     * @param joindin\EventBundle\Entity\Events $event
+     * @param joindin\EventBundle\Entity\EventTrack $track
      * @return Talks
      */
-    public function setEvent(\joindin\EventBundle\Entity\Events $event = null)
+    public function addEventTrack(\joindin\EventBundle\Entity\EventTrack $track)
     {
-        $this->event = $event;
+        $this->track[] = $track;
         return $this;
     }
 
     /**
-     * Get event
+     * Get track
      *
-     * @return joindin\EventBundle\Entity\Events 
+     * @return Doctrine\Common\Collections\Collection 
      */
-    public function getEvent()
+    public function getTrack()
     {
-        return $this->event;
+        return $this->track;
     }
-    public function __construct()
-    {
-        $this->comments = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
+
     /**
      * Add comments
      *
@@ -387,28 +424,6 @@ class Talks
     public function getCategories()
     {
         return $this->categories;
-    }
-
-    /**
-     * Add track
-     *
-     * @param joindin\EventBundle\Entity\EventTrack $track
-     * @return Talks
-     */
-    public function addEventTrack(\joindin\EventBundle\Entity\EventTrack $track)
-    {
-        $this->track[] = $track;
-        return $this;
-    }
-
-    /**
-     * Get track
-     *
-     * @return Doctrine\Common\Collections\Collection 
-     */
-    public function getTrack()
-    {
-        return $this->track;
     }
 
     /**
@@ -455,21 +470,25 @@ class Talks
         return $this->language;
     }
 
-
-    public function getRating() {
-        if (isset($this->staticRating)) {
-            return $this->staticRating;
-        }
-
-        // @TODO: Ratings should be an aggregate thingie.
-        // http://doctrine-orm.readthedocs.org/en/latest/cookbook/aggregate-fields.html
-        if ($this->rating == null) {
-            $this->rating = rand(1,5);
-        }
-        return $this->rating;
+    /**
+     * Set event
+     *
+     * @param joindin\EventBundle\Entity\Events $event
+     * @return Talks
+     */
+    public function setEvent(\joindin\EventBundle\Entity\Events $event = null)
+    {
+        $this->event = $event;
+        return $this;
     }
 
-    public function setRating($rating) {
-        $this->rating = $rating;
+    /**
+     * Get event
+     *
+     * @return joindin\EventBundle\Entity\Events 
+     */
+    public function getEvent()
+    {
+        return $this->event;
     }
 }

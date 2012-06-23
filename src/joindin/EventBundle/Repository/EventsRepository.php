@@ -160,4 +160,16 @@ class EventsRepository extends EntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+
+    public function getPendingEvents() {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->addSelect('e')
+                ->from('joindin\EventBundle\Entity\Events', 'e')
+                ->where('e.pending = 1');
+
+        return $qb->getQuery()->getResult();
+    }
+
 }

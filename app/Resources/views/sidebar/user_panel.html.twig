@@ -16,9 +16,15 @@
             <li><b>Admin Links</b>
                 <ul>
                     <li><a href="/user/admin">User Admin</a></li>
-                    <li><a href="/event/pending">Pending Events</a> (1)</li>
-                    <li><a href="/talk/claim">Talk Claims</a></li>
-                    <li><a href="/event/claims">Event Claims</a> (24)</li>
+                    <li><a href="/event/pending">Pending Events</a>
+                        {% if pendingEvents(app.user) | length > 0 %} ({{ pendingEvents(app.user) | length}}) {% endif %}
+                    </li>
+                    <li><a href="/talk/claim">Talk Claims</a>
+                        {% if talkClaims(app.user) | length > 0 %} ({{ talkClaims(app.user) | length}}) {% endif %}
+                    </li>
+                    <li><a href="/event/claims">Event Claims</a>
+                        {% if eventClaims(app.user) | length > 0 %} ({{eventClaims(app.user) | length}}) {% endif %}
+                    </li>
                 </ul>
             </li>
 {% endif %}

@@ -62,11 +62,7 @@ class User extends BaseUser
     protected $events;
 
     /**
-     * @ORM\ManyToMany(targetEntity="joindin\TalkBundle\Entity\TalkSpeaker")
-     * @ORM\JoinTable(name="user_attend",
-     *      joinColumns={@ORM\JoinColumn(name="uid", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="eid", referencedColumnName="id")}
-     *      )
+     * @ORM\OneToMany(targetEntity="joindin\TalkBundle\Entity\TalkSpeaker", mappedBy="user")
      */
     protected $speakers;
 

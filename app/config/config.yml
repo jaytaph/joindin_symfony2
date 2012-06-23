@@ -20,6 +20,17 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    globals:
+        google_analytics_code: %google_analytics_code%
+        site_name: %site_name%
+
+services:
+    joindin.twig.extension.pending:
+        class: joindin\defaultBundle\Twig\Extension\PendingExtension
+        arguments:
+            doctrine: "@doctrine"
+        tags:
+            - { name: twig.extension }
 
 # Assetic Configuration
 assetic:
@@ -67,10 +78,6 @@ fos_rest:
     routing_loader:
         default_format: xml
 
-twig:
-    globals:
-        google_analytics_code: %google_analytics_code%
-        site_name: %site_name%
 
 ornicar_gravatar:
     rating: g

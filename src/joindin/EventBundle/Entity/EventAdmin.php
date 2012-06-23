@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * joindin\EventBundle\Entity\EventAdmin
  *
  * @ORM\Table(name="event_admin")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="joindin\EventBundle\Repository\EventAdminRepository")
  */
 class EventAdmin
 {

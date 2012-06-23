@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * joindin\TalkBundle\Entity\TalkSpeaker
  *
  * @ORM\Table(name="talk_speaker")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="joindin\TalkBundle\Repository\TalkSpeakerRepository")
  */
 class TalkSpeaker
 {
