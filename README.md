@@ -3,6 +3,20 @@ Proof of concept for porting joind.in to Symfony2
 
 [![Build Status](https://secure.travis-ci.org/jaytaph/joindin_symfony2.png)](http://travis-ci.org/jaytaph/joindin_symfony2)
 
+## Status
+This is a proof-of-concept to port the joind.in website from code igniter to symfony2. There are many reasons why 
+this should be considered a "good thing", but it's mostly to get more acquinted with symfony2 itself for me. Note 
+that even though most functionality are mapped one-on-one, some things arent because of the fact that either they 
+are not used in the current functionality (like the blog), they seem to be better to do it this way (like pagination
+of talks/events) or that they should be refactored anyway (like a lot of database stuff).
+
+Note that I'm not attending for this site to become the next joind.in release, allthough I (and others) do see the 
+merits in moving on to a better framework and a more sensible codebase (provided I actually manage to create such a
+thing :)). So even though I do appreciate bugfixes, contributions and everything else for this project, you might be
+better of with fixing the actual (codeigniter) site itself.
+
+If you have any question, ask them at #joind.in channel on freenode IRC network.
+
 ## Todo
 - Move all the views to nice looking twig templates
 - Identify all the business logic and convert into code
